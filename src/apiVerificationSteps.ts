@@ -99,12 +99,12 @@ Then('Response {text} size is {text} {text}', (pathQuery, action, expectedValue)
  * Execute any jsonPath query against response and verify result is equal to expected value
  *
  * @example
- * User verifies response path "$.data.items[0].title" is equal to "TEST"
+ * I verify response path "$.data.items[0].title" is equal to "TEST"
  *
  * @param {String} pathQuery jsonPath query
  * @param {String} expectedValue value for comparing with result of jsonPath query
  */
-Then('User verifies response path {string} is equal to {text}', async (pathQuery, expectedValue) => {
+Then('I verify response path {string} is equal to {text}', async (pathQuery, expectedValue) => {
   const response = memory.getValue(`${browser.sessionId}response`);
   const property = jp.value(response.body, pathQuery);
 
