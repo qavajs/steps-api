@@ -35,14 +35,7 @@
     "types": [
       "chai",
       "node",
-      "@qavajs/memory",
-      "webdriverio/async"
-    ],
-    "paths": {        /* Specify a set of entries that re-map imports to additional lookup locations. */
-      "@apiHelpers":["src/apiHelpers.ts"],
-      "@utils":["src/utils.ts"],
-      "@parameterTypes":["src/parameterTypes.ts"],
-      "@src/*":["src/*"]
-    },
+      "@qavajs/memory"
+    ]
   }
 }
