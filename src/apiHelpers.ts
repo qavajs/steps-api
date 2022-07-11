@@ -15,7 +15,8 @@ async function sendHttpRequest(url: string, params: RequestInit): Promise<unknow
     ...params,
   };
   const response: Response = await fetch(url, conf);
-  return response.json();
+  response.body = await response.json();
+  return response;
 }
 
 export { sendHttpRequest };
