@@ -2,7 +2,6 @@
 This is a core package to get basic API cucumber steps.
 
 ```javascript
-const App = require('./page_object');
 module.exports = {
     default: {
         require: [
@@ -17,14 +16,11 @@ module.exports = {
             capabilities: {
                 browserName: 'chrome'
             }
-        },
-        pageObject: new App()
+        }
     }
 }
 ```
 ## Parameter Types
-
-[types](docs/parameter_types.md)
 
 ## Steps
 [api action steps](docs/api_action_steps.md)
