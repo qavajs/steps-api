@@ -22,8 +22,6 @@ module.exports = {
 ```
 ## Parameter Types
 
-[types](docs/parameter_types.md)
-
 ## Steps
 [api action steps](docs/api_action_steps.md)
 
