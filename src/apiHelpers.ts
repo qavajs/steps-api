@@ -5,7 +5,7 @@ import fetch, { RequestInit, Response } from 'node-fetch';
  *
  * @param {String} url - url that should be requested
  * @param {RequestInit} params - Object with all needed properties for request
- * @returns {Response} response - response object
+ * @returns {Response} response - response object with payload variable as parsed JSON response body
  */
 async function sendHttpRequest(url: string, params: RequestInit): Promise<unknown> {
   const conf = {
@@ -15,7 +15,7 @@ async function sendHttpRequest(url: string, params: RequestInit): Promise<unknow
     ...params,
   };
   const response: Response = await fetch(url, conf);
-  return response.json();
+  return { ...response, payload: await response.json() };
 }
 
 export { sendHttpRequest };

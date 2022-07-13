@@ -5,11 +5,11 @@ import { expect } from 'chai';
  * Comparing response status code with given
  *
  * @example
- * Response "$response" Status Code is equal "200"
+ * Response "$response" Status Code equals to "200"
  *
  * @param {String} statusCode should be valid status code
  */
-Then('Response {text} Status Code is {validation} {text}', (response: any, validation: any, statusCode: string) => {
+Then('Response {text} Status Code {validation} {text}', (response: any, validation: any, statusCode: string) => {
   validation(response.status, parseInt(statusCode, 10));
 });
 
@@ -17,7 +17,7 @@ Then('Response {text} Status Code is {validation} {text}', (response: any, valid
  * Verifying that response contains all models
  *
  * @example
- * Response "$response.data.items" contains:
+ * Response "$response.payload.data.items" contains:
  *       | _id                   |
  *       | appId                 |
  *       | serviceCategory       |
@@ -49,26 +49,26 @@ Then('Response {text} contains:', (property: any, dataTable: any) => {
  * Verifying that response model has necessary type
  *
  * @example
- * Response "$response.data.items" is an "array"
+ * Response "$response.payload.data.items" equals to "array"
  *
  * @param {String} pathQuery json path
  * @param {String} type should be named as expected value type
  */
-Then('Response {text} is {validation} {text}', (property: any, validation: any, type: string) => {
-  validation(property, type);
+Then('Response {text} {validation} {text}', (property: any, validation: any, type: string) => {
+  validation(typeof property, type);
 });
 
 /**
  * Verify that array size is equal to|less than|greater than given number
  *
  * @example
- * Response "$response.data.items" size is "greater than" "0"
+ * Response "$response.payload.data.items" size to be above "0"
  *
  * @param {String} responseElement json path
  * @param {String} action should be named as expected action (equal to|less than|greater)
  * @param {String} expectedValue Number for comparing with array size
  */
-Then('Response {text} size is {validation} {text}', (property: any, validation: any, expectedValue: string) => {
+Then('Response {text} size {validation} {text}', (property: any, validation: any, expectedValue: string) => {
   const count = property.length;
   validation(count, expectedValue);
 });
@@ -77,11 +77,11 @@ Then('Response {text} size is {validation} {text}', (property: any, validation: 
  * Execute any jsonPath query against response and verify result is equal to expected value
  *
  * @example
- * I verify response "$response.data.items[0].title" is equal to "TEST"
+ * I verify response "$response.payload.data.items[0].title" equals to "TEST"
  *
  * @param {String} pathQuery jsonPath query
  * @param {String} expectedValue value for comparing with result of jsonPath query
  */
-Then('I verify response {text} is {validation} {text}', async (property: any, validation: any, expectedValue: string) => {
+Then('I verify response {text} {validation} {text}', async (property: any, validation: any, expectedValue: string) => {
   validation(property, expectedValue);
 });
