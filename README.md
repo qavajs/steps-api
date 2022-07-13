@@ -2,7 +2,6 @@
 This is a core package to get basic API cucumber steps.
 
 ```javascript
-const App = require('./page_object');
 module.exports = {
     default: {
         require: [
@@ -17,8 +16,7 @@ module.exports = {
             capabilities: {
                 browserName: 'chrome'
             }
-        },
-        pageObject: new App()
+        }
     }
 }
 ```
