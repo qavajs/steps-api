@@ -84,14 +84,15 @@ defineParameterType({
 
 /**
  * Used for validation function
- * 
+ *
  * @returns {string}
  */
 defineParameterType({
   name: 'validation',
-  regexp: /((?:is |do |does |to )?(not |to not )?(?:to )?(?:be )?(equal|have member|match|contain|above|below|greater than|less than|have type)(?:s|es)?)/,
-  transformer: p => p,
-  useForSnippets: false
+  regexp:
+    /((?:is |do |does |to )?(not |to not )?(?:to )?(?:be )?(equal|have member|match|contain|above|below|greater than|less than|have type)(?:s|es)?)/,
+  transformer: (p) => p,
+  useForSnippets: false,
 });
 
 /**
@@ -100,6 +101,6 @@ defineParameterType({
 defineParameterType({
   name: 'response',
   regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-  transformer: response => memory.getValue(response),
-  useForSnippets: false
+  transformer: (response) => memory.getValue(response),
+  useForSnippets: false,
 });
