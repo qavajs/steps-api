@@ -5,7 +5,6 @@ This is a core package to get basic API cucumber steps.
 module.exports = {
     default: {
         require: [
-            '@qavajs/steps-config-loader',
             '@qavajs/steps-api'
         ],
         browser: {

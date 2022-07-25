@@ -1,5 +1,6 @@
 import { Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
+import { getValidation } from '@qavajs/validation';
 
 /**
  * Comparing response status code with given
@@ -9,7 +10,8 @@ import { expect } from 'chai';
  *
  * @param {String} statusCode should be valid status code
  */
-Then('Response {text} Status Code {validation} {text}', (response: any, validation: any, statusCode: string) => {
+Then('Response {response} Status Code {validation} {string}', (response: any, validationType: string, statusCode: string) => {
+  const validation = getValidation(validationType);
   validation(response.status, parseInt(statusCode, 10));
 });
 
@@ -25,7 +27,7 @@ Then('Response {text} Status Code {validation} {text}', (response: any, validati
  * @param {String} pathQuery json path
  * @param {Array} dataTable given data table with all properties
  */
-Then('Response {text} contains:', (property: any, dataTable: any) => {
+Then('Response {response} contains:', (property: any, dataTable: any) => {
   if (Array.isArray(property) && property.length > 0) {
     property.forEach((data) => {
       dataTable.rawTable
@@ -54,7 +56,8 @@ Then('Response {text} contains:', (property: any, dataTable: any) => {
  * @param {String} pathQuery json path
  * @param {String} type should be named as expected value type
  */
-Then('Response {text} {validation} {text}', (property: any, validation: any, type: string) => {
+Then('Response {response} {validation} {string}', (property: any, validationType: string, type: string) => {
+  const validation = getValidation(validationType);
   validation(typeof property, type);
 });
 
@@ -68,7 +71,8 @@ Then('Response {text} {validation} {text}', (property: any, validation: any, typ
  * @param {String} action should be named as expected action (equal to|less than|greater)
  * @param {String} expectedValue Number for comparing with array size
  */
-Then('Response {text} size {validation} {text}', (property: any, validation: any, expectedValue: string) => {
+Then('Response {response} size {validation} {string}', (property: any, validationType: string, expectedValue: string) => {
+  const validation = getValidation(validationType);
   const count = property.length;
   validation(count, expectedValue);
 });
@@ -82,6 +86,7 @@ Then('Response {text} size {validation} {text}', (property: any, validation: any
  * @param {String} pathQuery jsonPath query
  * @param {String} expectedValue value for comparing with result of jsonPath query
  */
-Then('I verify response {text} {validation} {text}', async (property: any, validation: any, expectedValue: string) => {
+Then('I verify response {response} {validation} {string}', async (property: any, validationType: string, expectedValue: string) => {
+  const validation = getValidation(validationType);
   validation(property, expectedValue);
 });

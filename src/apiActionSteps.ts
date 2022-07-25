@@ -17,7 +17,7 @@ import { sendHttpRequest } from './apiHelpers';
  * @param key key of the remembered value
  */
 When(
-  'I send {text} request to {landing-url}{headers} and save response as {text}',
+  'I send {string} request to {landingUrl}{headers} and save response as {string}',
   async function (method: string, url: string, headers: any, key: string) {
     const conf: RequestInit = {
       method,
@@ -43,7 +43,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {text} request to {landing-url}{headers} with qs {text} and save response as {text}',
+  'I send {string} request to {landingUrl}{headers} with qs {string} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, key: string) {
     url = `${url}${params}`;
     const conf: RequestInit = {
@@ -75,7 +75,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {text} request to {landing-url}{headers} with Body {json} and save response as {text}',
+  'I send {string} request to {landingUrl}{headers} with Body {json} and save response as {string}',
   async function (method: string, url: string, headers: any, requestBody: JSON, key: string) {
     const conf: RequestInit = {
       method,
@@ -103,7 +103,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {text} request to {landing-url}{headers} with qs {text} and Body {json} and save response as {text}',
+  'I send {string} request to {landingUrl}{headers} with qs {string} and Body {json} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, requestBody: JSON, key: string) {
     url = `${url}${params}`;
     const conf: RequestInit = {
@@ -136,7 +136,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {text} request and save response as {text} to {landing-url}{headers} with Body:',
+  'I send {string} request and save response as {string} to {landingUrl}{headers} with Body:',
   async function (method: string, key: string, url: string, headers: any, requestBody: JSON) {
     const conf: RequestInit = {
       method,

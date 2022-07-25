@@ -12,7 +12,7 @@ import { getTestDataFilePath } from './utils';
  */
 defineParameterType({
   regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-  name: 'landing-url',
+  name: 'landingUrl',
   useForSnippets: false,
   transformer: (string: string) => {
     if (string.indexOf('http') === 0) {
@@ -80,4 +80,26 @@ defineParameterType({
     const data = fse.readJSONSync(filePath);
     return data;
   },
+});
+
+/**
+ * Used for validation function
+ * 
+ * @returns {string}
+ */
+defineParameterType({
+  name: 'validation',
+  regexp: /((?:is |do |does |to )?(not |to not )?(?:to )?(?:be )?(equal|have member|match|contain|above|below|greater than|less than|have type)(?:s|es)?)/,
+  transformer: p => p,
+  useForSnippets: false
+});
+
+/**
+ * Used for getting response object from the memory
+ */
+defineParameterType({
+  name: 'response',
+  regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
+  transformer: response => memory.getValue(response),
+  useForSnippets: false
 });

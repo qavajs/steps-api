@@ -1,7 +1,7 @@
 # Validation Steps
 
 ---
-### Response {text} Status Code {validation} {text} &#9989;
+### Response {response} Status Code {validation} {string} &#9989;
 
 Verify response status code
 
@@ -16,7 +16,7 @@ example:
 ```
 
 ---
-### Response {text} contains: &#9989;
+### Response {response} contains: &#9989;
 
 Verify that response contains needed properties
 
@@ -33,7 +33,7 @@ example:
 ```
 
 ---
-### Response {text} {validation} {text} &#9989;
+### Response {response} {validation} {string} &#9989;
 
 Verifying that response model has necessary type
 
@@ -48,7 +48,7 @@ example:
    Then Response "$response.payload.data.items" equals to "array"
 ```
 ---
-### Response {text} size {validation} {text} &#9989;
+### Response {response} size {validation} {string} &#9989;
 
 Verify that response array size is equal to|less than|greater than given number
 
@@ -63,7 +63,7 @@ example:
     Then Response "$response.payload.data.items" size to be above "0"
 ```
 ---
-### I verify response {text} {validation} {text} &#9989;
+### I verify response {response} {validation} {string} &#9989;
 
 Execute any jsonPath query against response and verify result is equal to expected value
 
