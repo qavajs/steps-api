@@ -35,7 +35,8 @@
     "types": [
       "chai",
       "node",
-      "@qavajs/memory"
+      "@qavajs/memory",
+      "@qavajs/validation"
     ]
   }
 }
