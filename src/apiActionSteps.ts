@@ -45,6 +45,7 @@ When(
 When(
   'I send {string} request to {landingUrl}{headers} with qs {string} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, key: string) {
+    params = memory.getValue(params);
     url = `${url}${params}`;
     const conf: RequestInit = {
       method,
@@ -105,6 +106,7 @@ When(
 When(
   'I send {string} request to {landingUrl}{headers} with qs {string} and Body {json} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, requestBody: JSON, key: string) {
+    params = memory.getValue(params);
     url = `${url}${params}`;
     const conf: RequestInit = {
       method,
