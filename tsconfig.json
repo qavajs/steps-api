@@ -35,6 +35,7 @@
     "types": [
       "chai",
       "node",
+      "node-fetch",
       "@qavajs/memory",
       "@qavajs/validation"
     ]
