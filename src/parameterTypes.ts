@@ -66,7 +66,7 @@ defineParameterType({
  * @return {JSON}
  */
 defineParameterType({
-  regexp: /| with headers "(.*)"/,
+  regexp: /| with headers "(.[^"]+)"/,
   name: 'headers',
   useForSnippets: false,
   transformer: (str: string) => {
