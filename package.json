@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "api steps for @qavajs project",
   "scripts": {
     "build": "tsc",
