@@ -1,7 +1,7 @@
 import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
-import { sendHttpRequest } from './apiHelpers';
+import { sendHttpRequest } from '@qavajs/api-service';
 
 /**
  * Send request to the API

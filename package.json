@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "api steps for @qavajs project",
   "scripts": {
     "build": "tsc",
@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "@cucumber/cucumber": "^8.2.2",
+    "@qavajs/api-service": "^0.0.3",
     "@qavajs/memory": "^1.0.0",
     "@qavajs/validation": "^0.0.1",
     "chai": "^4.3.6",
