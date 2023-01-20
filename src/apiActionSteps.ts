@@ -1,8 +1,10 @@
 import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
-import { sendHttpRequest } from '@qavajs/api-service';
+// @ts-ignore
+import { httpRequest } from '@qavajs/api-service';
 
+const { sendHttpRequest } = httpRequest;
 /**
  * Send request to the API
  *

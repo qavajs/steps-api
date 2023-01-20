@@ -1,12 +1,14 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "api steps for @qavajs project",
+  "main": "./index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint:write": "npm run pretty && eslint ./ --fix",
-    "pretty": "prettier --write ./"
+    "pretty": "prettier --write ./",
+    "test:e2e": "ts-node --esm --project tsconfig.json node_modules/@qavajs/cli/bin/qavajs.js run --config test-e2e/api.ts"
   },
   "husky": {
     "hooks": {
@@ -28,6 +30,10 @@
   "homepage": "https://github.com/qavajs/steps-api#readme",
   "devDependencies": {
     "@babel/core": "^7.18.6",
+    "@cucumber/cucumber": "^8.10.0",
+    "@qavajs/cli": "^0.0.17",
+    "@qavajs/memory": "^1.1.1",
+    "@qavajs/xunit-formatter": "^0.0.3",
     "@types/babel__core": "^7.1.19",
     "@types/chai": "^4.3.1",
     "@types/fs-extra": "^9.0.12",
@@ -51,13 +57,12 @@
     "jest": "^28.1.1",
     "prettier": "^2.3.2",
     "ts-jest": "^28.0.5",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.3"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^8.2.2",
     "@qavajs/api-service": "^0.0.3",
-    "@qavajs/memory": "^1.0.0",
-    "@qavajs/validation": "^0.0.1",
+    "@qavajs/validation": "^0.0.2",
     "chai": "^4.3.6",
     "fs-extra": "^10.1.0",
     "node-fetch": "^2.6.1"

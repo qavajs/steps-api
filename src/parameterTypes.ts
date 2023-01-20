@@ -47,8 +47,7 @@ defineParameterType({
       return memory.getValue(str);
     }
     const filePath = getTestDataFilePath(str);
-    const data = fse.readJSONSync(filePath);
-    return data;
+    return fse.readJSONSync(filePath);
   },
 });
 
@@ -77,8 +76,7 @@ defineParameterType({
       return memory.getValue(str);
     }
     const filePath = getTestDataFilePath(str);
-    const data = fse.readJSONSync(filePath);
-    return data;
+    return fse.readJSONSync(filePath);
   },
 });
 
