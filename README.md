@@ -1,25 +1,18 @@
 # @qavajs/api-steps
-This is a core package to get basic API cucumber steps.
+This is a @qavajs package to get basic API cucumber steps.
 
+## Installation
+
+`npm install @qavajs/steps-api`
+
+## Configuration
 ```javascript
 module.exports = {
     default: {
-        require: [
-            '@qavajs/steps-api'
-        ],
-        browser: {
-            timeout: {
-                present: 10000,
-                visible: 20000    
-            },
-            capabilities: {
-                browserName: 'chrome'
-            }
-        }
+        require: ['@qavajs/steps-api']
     }
 }
 ```
-## Parameter Types
 
 ## Steps
 [api action steps](docs/api_action_steps.md)
