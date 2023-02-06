@@ -144,7 +144,7 @@ When(
   async function (method: string, key: string, url: string, headers: any, requestBody: JSON) {
     const conf: RequestInit = {
       method,
-      body: JSON.stringify(requestBody),
+      body: requestBody,
       ...headers,
     };
     const response = await sendHttpRequest(url, conf);

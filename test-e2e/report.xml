@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<testsuites>
-  <testsuite name="API" package="API" id="API">
-    <properties>
-      <property name="URI" value="test-e2e/features/api.feature"/>
-    </properties>
-    <testcase name="Verify simple send" classname="API" time="0.225567564"/>
-  </testsuite>
-</testsuites>

@@ -18,6 +18,20 @@ Then('Response {response} Status Code {apiValidation} {string}', (response: any,
 });
 
 /**
+ * Comparing response status meesage with given
+ *
+ * @example
+ * Response "$response" Status Message equals to "OK"
+ *
+ * @param {String} statusMessage should be valid status code
+ */
+Then('Response {response} Status Message {apiValidation} {string}', (response: any, validationType: string, statusMessage: string) => {
+  const validation = getValidation(validationType);
+  statusMessage = memory.getValue(statusMessage);
+  validation(response.statusText, statusMessage);
+});
+
+/**
  * Verifying that response contains all models
  *
  * @example
