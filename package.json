@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
@@ -21,7 +21,8 @@
   },
   "authors": [
     "Alexandr Galichenko",
-    "Kiryl Bahdanets"
+    "Kiryl Bahdanets",
+    "Dzmitry Prakapuk"
   ],
   "license": "MIT",
   "bugs": {
