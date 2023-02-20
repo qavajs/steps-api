@@ -42,13 +42,7 @@ defineParameterType({
   regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
   name: 'json',
   useForSnippets: false,
-  transformer: (str: string) => {
-    if (str.startsWith('$')) {
-      return memory.getValue(str);
-    }
-    const filePath = getTestDataFilePath(str);
-    return fse.readJSONSync(filePath);
-  },
+  transformer: (str: string) => memory.getValue(str),
 });
 
 /**
@@ -72,11 +66,7 @@ defineParameterType({
     if (!str) {
       return {};
     }
-    if (str.includes('$')) {
-      return memory.getValue(str);
-    }
-    const filePath = getTestDataFilePath(str);
-    return fse.readJSONSync(filePath);
+    return memory.getValue(str);
   },
 });
 

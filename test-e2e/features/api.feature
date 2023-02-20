@@ -34,7 +34,7 @@ Feature: API
     And Response "$response" Status Message to be equal 'OK'
 
   Scenario: Verify simple send with query and headers as file
-    When I send 'GET' request to "https://jsonplaceholder.typicode.com/posts" with headers "headers.json" with qs "?userId=1" and save response as 'response'
+    When I send 'GET' request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with qs "?userId=1" and save response as 'response'
     Then Response "$response" Status Code to be equal '200'
     And Response "$response" Status Message to be equal 'OK'
 
@@ -70,7 +70,7 @@ Feature: API
     And Response "$response" Status Message to be equal 'Created'
 
   Scenario: Verify POST with valid request body as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with Body "test_data_file.json" and save response as "response"
+    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with Body "$json('testData/test_data_file.json')" and save response as "response"
     Then Response "$response" Status Code to be equal '201'
     And Response "$response" Status Message to be equal 'Created'
     And Response "$response.payload" contains:
@@ -80,7 +80,7 @@ Feature: API
       | body      |
 
   Scenario: Verify POST with valid request body as file and headers as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "headers.json" with Body "test_data_file.json" and save response as "response"
+    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body "$json('testData/test_data_file.json')" and save response as "response"
     Then Response "$response" Status Code to be equal '201'
     And Response "$response" Status Message to be equal 'Created'
     And Response "$response.payload" contains:
