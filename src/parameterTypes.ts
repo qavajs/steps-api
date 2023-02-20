@@ -1,7 +1,5 @@
 import { defineParameterType } from '@cucumber/cucumber';
 import memory from '@qavajs/memory';
-import fse from 'fs-extra';
-import { getTestDataFilePath } from './utils';
 
 /**
  * Used for urls.
