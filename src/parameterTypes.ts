@@ -12,14 +12,7 @@ defineParameterType({
   regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
   name: 'landingUrl',
   useForSnippets: false,
-  transformer: (string: string) => {
-    if (string.indexOf('http') === 0) {
-      return string;
-    }
-    if (string.startsWith('$')) {
-      return memory.getValue(string);
-    }
-  },
+  transformer: (string: string) => memory.getValue(string),
 });
 
 /**
