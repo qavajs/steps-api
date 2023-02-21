@@ -23,9 +23,9 @@ When(
   async function (method: string, url: string, headers: any, key: string) {
     const conf: RequestInit = {
       method,
-      ...headers,
+      ...(await headers),
     };
-    const response = await sendHttpRequest(url, conf);
+    const response = await sendHttpRequest(await url, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -47,11 +47,11 @@ When(
 When(
   'I send {string} request to {landingUrl}{headers} with qs {string} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, key: string) {
-    params = memory.getValue(params);
-    url = `${url}${params}`;
+    params = await memory.getValue(params);
+    url = `${await url}${params}`;
     const conf: RequestInit = {
       method,
-      ...headers,
+      ...(await headers),
     };
     const response = await sendHttpRequest(url, conf);
 
@@ -82,10 +82,10 @@ When(
   async function (method: string, url: string, headers: any, requestBody: JSON, key: string) {
     const conf: RequestInit = {
       method,
-      body: JSON.stringify(requestBody),
-      ...headers,
+      body: JSON.stringify(await requestBody),
+      ...(await headers),
     };
-    const response = await sendHttpRequest(url, conf);
+    const response = await sendHttpRequest(await url, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -108,14 +108,14 @@ When(
 When(
   'I send {string} request to {landingUrl}{headers} with qs {string} and Body {json} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, requestBody: JSON, key: string) {
-    params = memory.getValue(params);
-    url = `${url}${params}`;
+    params = await memory.getValue(params);
+    url = `${await url}${params}`;
     const conf: RequestInit = {
       method,
-      body: JSON.stringify(requestBody),
-      ...headers,
+      body: JSON.stringify(await requestBody),
+      ...(await headers),
     };
-    const response = await sendHttpRequest(url, conf);
+    const response = await sendHttpRequest(await url, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -144,10 +144,10 @@ When(
   async function (method: string, key: string, url: string, headers: any, requestBody: JSON) {
     const conf: RequestInit = {
       method,
-      body: requestBody,
-      ...headers,
+      body: await requestBody,
+      ...(await headers),
     };
-    const response = await sendHttpRequest(url, conf);
+    const response = await sendHttpRequest(await url, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);

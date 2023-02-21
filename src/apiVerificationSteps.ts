@@ -11,9 +11,9 @@ import memory from '@qavajs/memory';
  *
  * @param {String} statusCode should be valid status code
  */
-Then('Response {response} Status Code {apiValidation} {string}', (response: any, validationType: string, statusCode: string) => {
+Then('Response {response} Status Code {apiValidation} {string}', async (response: any, validationType: string, statusCode: string) => {
   const validation = getValidation(validationType);
-  statusCode = memory.getValue(statusCode);
+  statusCode = await memory.getValue(statusCode);
   validation(response.status, parseInt(statusCode, 10));
 });
 
@@ -25,9 +25,9 @@ Then('Response {response} Status Code {apiValidation} {string}', (response: any,
  *
  * @param {String} statusMessage should be valid status code
  */
-Then('Response {response} Status Message {apiValidation} {string}', (response: any, validationType: string, statusMessage: string) => {
+Then('Response {response} Status Message {apiValidation} {string}', async (response: any, validationType: string, statusMessage: string) => {
   const validation = getValidation(validationType);
-  statusMessage = memory.getValue(statusMessage);
+  statusMessage = await memory.getValue(statusMessage);
   validation(response.statusText, statusMessage);
 });
 
@@ -72,9 +72,9 @@ Then('Response {response} contains:', (property: any, dataTable: any) => {
  * @param {String} pathQuery json path
  * @param {String} type should be named as expected value type
  */
-Then('Response {response} {apiValidation} {string}', (property: any, validationType: string, type: string) => {
+Then('Response {response} {apiValidation} {string}', async (property: any, validationType: string, type: string) => {
   const validation = getValidation(validationType);
-  type = memory.getValue(type);
+  type = await memory.getValue(type);
   validation(typeof property, type);
 });
 
@@ -88,10 +88,10 @@ Then('Response {response} {apiValidation} {string}', (property: any, validationT
  * @param {String} action should be named as expected action (equal to|less than|greater)
  * @param {String} expectedValue Number for comparing with array size
  */
-Then('Response {response} size {apiValidation} {string}', (property: any, validationType: string, expectedValue: string) => {
+Then('Response {response} size {apiValidation} {string}', async (property: any, validationType: string, expectedValue: string) => {
   const validation = getValidation(validationType);
   const count = property.length;
-  expectedValue = memory.getValue(expectedValue);
+  expectedValue = await memory.getValue(expectedValue);
   validation(count, expectedValue);
 });
 
@@ -106,6 +106,6 @@ Then('Response {response} size {apiValidation} {string}', (property: any, valida
  */
 Then('I verify response {response} {apiValidation} {string}', async (property: any, validationType: string, expectedValue: string) => {
   const validation = getValidation(validationType);
-  expectedValue = memory.getValue(expectedValue);
+  expectedValue = await memory.getValue(expectedValue);
   validation(property, expectedValue);
 });
