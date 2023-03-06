@@ -23,9 +23,9 @@ When(
   async function (method: string, url: string, headers: any, key: string) {
     const requestUrl = await memory.getValue(url);
     const conf: RequestInit = {
-      method,
-      ...(await headers),
+      method
     };
+    if (await headers) conf.headers = await headers;
     const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
@@ -51,8 +51,8 @@ When(
     const requestUrl = (await memory.getValue(url)) + (await memory.getValue(params));
     const conf: RequestInit = {
       method,
-      ...(await headers),
     };
+    if (await headers) conf.headers = await headers;
     const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
@@ -85,8 +85,8 @@ When(
     const conf: RequestInit = {
       method,
       body: await requestBody,
-      ...(await headers),
     };
+    if (await headers) conf.headers = await headers;
     const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
@@ -115,8 +115,8 @@ When(
     const conf: RequestInit = {
       method,
       body: await requestBody,
-      ...(await headers),
     };
+    if (await headers) conf.headers = await headers;
     const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
@@ -149,10 +149,9 @@ When(
     const conf: RequestInit = {
       method,
       body: await requestBody,
-      ...(await headers),
     };
+    if (await headers) conf.headers = await headers;
     const response = await sendHttpRequest(requestUrl, conf);
-
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
   },

@@ -2,27 +2,16 @@ import { defineParameterType } from '@cucumber/cucumber';
 import memory from '@qavajs/memory';
 
 /**
- * Used for returning JSON
- *
- * If string ends with '.json' - parses the JSON file and returns JSON
- *
- * @example
- * File location:
- * feature file name: api-test.feature
- *     test data dir: testData
- *         json-file: testData\test_data_file.json
- *
- * @return {JSON}
+ * Optional headers
  */
 defineParameterType({
   regexp: /| with headers ['"](.[^"]+)['"]/,
   name: 'headers',
   useForSnippets: false,
   transformer: (str: string) => {
-    if (!str) {
-      return {};
+    if (str) {
+      return memory.getValue(str);
     }
-    return memory.getValue(str);
   },
 });
 
