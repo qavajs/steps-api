@@ -2,41 +2,6 @@ import { defineParameterType } from '@cucumber/cucumber';
 import memory from '@qavajs/memory';
 
 /**
- * Used for urls.
- * If string starts with 'http', will return string as it is.
- * Else will parse value and return it from apiData file
- *
- * @return {string}
- */
-defineParameterType({
-  regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-  name: 'landingUrl',
-  useForSnippets: false,
-  transformer: (string: string) => memory.getValue(string),
-});
-
-/**
- * Used for returning JSON
- *
- * If string ends with '.json' - parses the JSON file and returns JSON
- * if string stadrts with '$' - data will be parsed from memory
- *
- * @example
- * File location:
- * feature file name: api-test.feature
- *     test data dir: testData
- *         json-file: testData\test_data_file.json
- *
- * @return {JSON}
- */
-defineParameterType({
-  regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-  name: 'json',
-  useForSnippets: false,
-  transformer: (str: string) => memory.getValue(str),
-});
-
-/**
  * Used for returning JSON
  *
  * If string ends with '.json' - parses the JSON file and returns JSON
@@ -50,7 +15,7 @@ defineParameterType({
  * @return {JSON}
  */
 defineParameterType({
-  regexp: /| with headers "(.[^"]+)"/,
+  regexp: /| with headers ['"](.[^"]+)['"]/,
   name: 'headers',
   useForSnippets: false,
   transformer: (str: string) => {

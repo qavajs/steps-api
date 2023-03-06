@@ -19,13 +19,14 @@ const { sendHttpRequest } = httpRequest;
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {landingUrl}{headers} and save response as {string}',
+  'I send {string} request to {string}{headers} and save response as {string}',
   async function (method: string, url: string, headers: any, key: string) {
+    const requestUrl = await memory.getValue(url);
     const conf: RequestInit = {
       method,
       ...(await headers),
     };
-    const response = await sendHttpRequest(await url, conf);
+    const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -45,15 +46,14 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {landingUrl}{headers} with qs {string} and save response as {string}',
+  'I send {string} request to {string}{headers} with qs {string} and save response as {string}',
   async function (method: string, url: string, headers: any, params: string, key: string) {
-    params = await memory.getValue(params);
-    url = `${await url}${params}`;
+    const requestUrl = (await memory.getValue(url)) + (await memory.getValue(params));
     const conf: RequestInit = {
       method,
       ...(await headers),
     };
-    const response = await sendHttpRequest(url, conf);
+    const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -78,14 +78,16 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {landingUrl}{headers} with Body {json} and save response as {string}',
-  async function (method: string, url: string, headers: any, requestBody: JSON, key: string) {
+  'I send {string} request to {string}{headers} with Body {string} and save response as {string}',
+  async function (method: string, url: string, headers: any, body: any, key: string) {
+    const requestUrl = await memory.getValue(url);
+    const requestBody = await memory.getValue(body);
     const conf: RequestInit = {
       method,
-      body: JSON.stringify(await requestBody),
+      body: await requestBody,
       ...(await headers),
     };
-    const response = await sendHttpRequest(await url, conf);
+    const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -106,16 +108,16 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {landingUrl}{headers} with qs {string} and Body {json} and save response as {string}',
-  async function (method: string, url: string, headers: any, params: string, requestBody: JSON, key: string) {
-    params = await memory.getValue(params);
-    url = `${await url}${params}`;
+  'I send {string} request to {string}{headers} with qs {string} and Body {string} and save response as {string}',
+  async function (method: string, url: string, headers: any, params: string, body: any, key: string) {
+    const requestUrl = (await memory.getValue(url)) + (await memory.getValue(params));
+    const requestBody = await memory.getValue(body);
     const conf: RequestInit = {
       method,
-      body: JSON.stringify(await requestBody),
+      body: await requestBody,
       ...(await headers),
     };
-    const response = await sendHttpRequest(await url, conf);
+    const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -140,14 +142,16 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request and save response as {string} to {landingUrl}{headers} with Body:',
-  async function (method: string, key: string, url: string, headers: any, requestBody: JSON) {
+  'I send {string} request and save response as {string} to {string}{headers} with Body:',
+  async function (method: string, key: string, url: string, headers: any, body: any) {
+    const requestUrl = await memory.getValue(url);
+    const requestBody = await memory.getValue(body);
     const conf: RequestInit = {
       method,
       body: await requestBody,
       ...(await headers),
     };
-    const response = await sendHttpRequest(await url, conf);
+    const response = await sendHttpRequest(requestUrl, conf);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
