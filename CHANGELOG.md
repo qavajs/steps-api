@@ -1,3 +1,6 @@
+## 0.0.9
+- removed JSON stringify from body send
+
 ## 0.0.7
 - fixed step definition for sending requests with requestBody as DOC Cucumber String 
 - added step definition to verify response status message

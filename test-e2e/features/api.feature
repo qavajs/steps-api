@@ -15,7 +15,7 @@ Feature: API
     Then I expect '$response.payload.completed' memory value to be equal '$boolean("false")'
 #
   Scenario: Verify simple send with headers as file
-    When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" with headers "headers.json" and save response as 'response'
+    When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" with headers "$json('testData/headers.json')" and save response as 'response'
     Then Response "$response" Status Code to be equal '200'
     And Response "$response" Status Message to be equal 'OK'
     Then Response "$response.payload" contains:
@@ -57,7 +57,7 @@ Feature: API
     And Response "$response" Status Message to be equal 'Created'
 
   Scenario: Verify POST with valid request body as Cucumber Doc String and headers as file
-    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with headers "headers.json" with Body:
+    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body:
       """
       {
         "userId": 1,
@@ -70,7 +70,7 @@ Feature: API
     And Response "$response" Status Message to be equal 'Created'
 
   Scenario: Verify POST with valid request body as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with Body "$json('testData/test_data_file.json')" and save response as "response"
+    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with Body "$textFile('testData/test_data_file.json')" and save response as "response"
     Then Response "$response" Status Code to be equal '201'
     And Response "$response" Status Message to be equal 'Created'
     And Response "$response.payload" contains:
@@ -80,7 +80,7 @@ Feature: API
       | body      |
 
   Scenario: Verify POST with valid request body as file and headers as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body "$json('testData/test_data_file.json')" and save response as "response"
+    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body "$textFile('testData/test_data_file.json')" and save response as "response"
     Then Response "$response" Status Code to be equal '201'
     And Response "$response" Status Message to be equal 'Created'
     And Response "$response.payload" contains:
