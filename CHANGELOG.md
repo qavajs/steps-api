@@ -1,3 +1,6 @@
+## 0.0.10
+- removed headers parameter type. Moved logic step signature
+
 ## 0.0.9
 - removed JSON stringify from body send
 
