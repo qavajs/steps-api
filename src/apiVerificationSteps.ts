@@ -11,10 +11,11 @@ import memory from '@qavajs/memory';
  *
  * @param {String} statusCode should be valid status code
  */
-Then('Response {response} Status Code {apiValidation} {string}', async (response: any, validationType: string, statusCode: string) => {
+Then('Response {string} Status Code {apiValidation} {string}', async (response: any, validationType: string, statusCode: string) => {
+  const responseValue = await memory.getValue(response);
   const validation = getValidation(validationType);
   statusCode = await memory.getValue(statusCode);
-  validation(response.status, parseInt(statusCode, 10));
+  validation(responseValue.status, parseInt(statusCode, 10));
 });
 
 /**
@@ -25,10 +26,11 @@ Then('Response {response} Status Code {apiValidation} {string}', async (response
  *
  * @param {String} statusMessage should be valid status code
  */
-Then('Response {response} Status Message {apiValidation} {string}', async (response: any, validationType: string, statusMessage: string) => {
+Then('Response {string} Status Message {apiValidation} {string}', async (response: any, validationType: string, statusMessage: string) => {
+  const responseValue = await memory.getValue(response);
   const validation = getValidation(validationType);
   statusMessage = await memory.getValue(statusMessage);
-  validation(response.statusText, statusMessage);
+  validation(responseValue.statusText, statusMessage);
 });
 
 /**
@@ -43,7 +45,8 @@ Then('Response {response} Status Message {apiValidation} {string}', async (respo
  * @param {String} pathQuery json path
  * @param {Array} dataTable given data table with all properties
  */
-Then('Response {response} contains:', (property: any, dataTable: any) => {
+Then('Response {string} contains:', async function (response: any, dataTable: any) {
+  const property = await memory.getValue(response);
   if (Array.isArray(property) && property.length > 0) {
     property.forEach((data) => {
       dataTable.rawTable
@@ -72,7 +75,8 @@ Then('Response {response} contains:', (property: any, dataTable: any) => {
  * @param {String} pathQuery json path
  * @param {String} type should be named as expected value type
  */
-Then('Response {response} {apiValidation} {string}', async (property: any, validationType: string, type: string) => {
+Then('Response {string} {apiValidation} {string}', async function (response: any, validationType: string, type: string) {
+  const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   type = await memory.getValue(type);
   validation(typeof property, type);
@@ -88,7 +92,8 @@ Then('Response {response} {apiValidation} {string}', async (property: any, valid
  * @param {String} action should be named as expected action (equal to|less than|greater)
  * @param {String} expectedValue Number for comparing with array size
  */
-Then('Response {response} size {apiValidation} {string}', async (property: any, validationType: string, expectedValue: string) => {
+Then('Response {string} size {apiValidation} {string}', async function (response: any, validationType: string, expectedValue: string) {
+  const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   const count = property.length;
   expectedValue = await memory.getValue(expectedValue);
@@ -104,7 +109,8 @@ Then('Response {response} size {apiValidation} {string}', async (property: any, 
  * @param {String} pathQuery jsonPath query
  * @param {String} expectedValue value for comparing with result of jsonPath query
  */
-Then('I verify response {response} {apiValidation} {string}', async (property: any, validationType: string, expectedValue: string) => {
+Then('I verify response {string} {apiValidation} {string}', async function (response: any, validationType: string, expectedValue: string) {
+  const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   expectedValue = await memory.getValue(expectedValue);
   validation(property, expectedValue);
