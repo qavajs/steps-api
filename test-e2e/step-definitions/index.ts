@@ -12,14 +12,14 @@ Before(function () {
     .post('/echo')
     .query(true)
     .reply(200, function (uri, requestBody) {
-      return ({
+      return {
         uri,
         requestBody,
         requestHeaders: this.req.headers,
-        requestPath: this.req.path
-      })
+        requestPath: this.req.path,
+      };
     });
-})
+});
 
 Then('I expect {string} memory value to be equal {string}', async function (actual, expected) {
   const actualValue = memory.getValue(actual);
