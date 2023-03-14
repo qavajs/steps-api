@@ -291,8 +291,8 @@ When(
 );
 
 /**
- *  MANDATORY STEP THAT SHOULD BE USED AFTER SENDING REQUEST
- *  Parsing body in needed way
+ * MANDATORY STEP THAT SHOULD BE USED AFTER SENDING REQUEST
+ * Parsing body in needed way
  *
  * @example
  * I parse "$response" body as "json"
