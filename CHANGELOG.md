@@ -1,3 +1,6 @@
+## 0.0.11
+- added step for parsing response body with tneeded type
+
 ## 0.0.10
 - removed headers parameter type. Moved logic step signature
 

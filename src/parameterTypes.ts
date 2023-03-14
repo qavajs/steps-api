@@ -12,3 +12,15 @@ defineParameterType({
   transformer: (p) => p,
   useForSnippets: false,
 });
+
+/**
+ * Used for parsing responses body
+ *
+ * @returns {string}
+ */
+defineParameterType({
+  name: 'bodyParsingType',
+  regexp: /"(arrayBuffer|formData|blob|json|text)"/,
+  transformer: (p) => p,
+  useForSnippets: false,
+});
