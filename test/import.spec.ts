@@ -13,5 +13,5 @@ test('import steps', () => {
   const importer = () => {
     import('../index.js');
   };
-  expect(importer).not.toThrowError();
+  expect(importer).not.toThrow();
 });
