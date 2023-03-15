@@ -11,10 +11,12 @@ import memory from '@qavajs/memory';
  *
  * @param {String} statusCode should be valid status code
  */
-Then('Response {string} Status Code {apiValidation} {string}', async (response: any, validationType: string, statusCode: string) => {
+Then('Response {string} Status Code {apiValidation} {string}', async function (response: any, validationType: string, statusCode: string) {
   const responseValue = await memory.getValue(response);
   const validation = getValidation(validationType);
   statusCode = await memory.getValue(statusCode);
+  this.log(`AR: ${responseValue.status}`);
+  this.log(`ER: ${statusCode}`);
   validation(responseValue.status, parseInt(statusCode, 10));
 });
 
@@ -26,10 +28,12 @@ Then('Response {string} Status Code {apiValidation} {string}', async (response: 
  *
  * @param {String} statusMessage should be valid status code
  */
-Then('Response {string} Status Message {apiValidation} {string}', async (response: any, validationType: string, statusMessage: string) => {
+Then('Response {string} Status Message {apiValidation} {string}', async function (response: any, validationType: string, statusMessage: string) {
   const responseValue = await memory.getValue(response);
   const validation = getValidation(validationType);
   statusMessage = await memory.getValue(statusMessage);
+  this.log(`AR: ${responseValue.statusText}`);
+  this.log(`ER: ${statusMessage}`);
   validation(responseValue.statusText, statusMessage);
 });
 
@@ -79,6 +83,8 @@ Then('Response {string} {apiValidation} {string}', async function (response: any
   const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   type = await memory.getValue(type);
+  this.log(`AR: ${typeof property}`);
+  this.log(`ER: ${type}`);
   validation(typeof property, type);
 });
 
@@ -97,6 +103,8 @@ Then('Response {string} size {apiValidation} {string}', async function (response
   const validation = getValidation(validationType);
   const count = property.length;
   expectedValue = await memory.getValue(expectedValue);
+  this.log(`AR: ${count}`);
+  this.log(`ER: ${expectedValue}`);
   validation(count, expectedValue);
 });
 
@@ -113,5 +121,7 @@ Then('I verify response {string} {apiValidation} {string}', async function (resp
   const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   expectedValue = await memory.getValue(expectedValue);
+  this.log(`AR: ${property}`);
+  this.log(`ER: ${expectedValue}`);
   validation(property, expectedValue);
 });

@@ -18,6 +18,11 @@ Before(function () {
         requestHeaders: this.req.headers,
         requestPath: this.req.path,
       };
+    })
+    .get('/text')
+    .query(true)
+    .reply(200, function (uri, requestBody) {
+      return 'hello qavajs';
     });
 });
 

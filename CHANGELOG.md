@@ -1,5 +1,9 @@
+## 0.0.12
+- added logs to validation steps
+- removed hook
+
 ## 0.0.11
-- added step for parsing response body with tneeded type
+- added step for parsing response body with needed type
 
 ## 0.0.10
 - removed headers parameter type. Moved logic step signature
