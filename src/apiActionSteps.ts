@@ -2,7 +2,7 @@ import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
 // @ts-ignore
-import { httpRequest } from '@qavajs/api-service';
+import httpRequest from '@qavajs/api-service';
 
 const { sendHttpRequest } = httpRequest;
 /**

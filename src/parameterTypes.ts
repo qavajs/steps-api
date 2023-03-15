@@ -20,7 +20,7 @@ defineParameterType({
  */
 defineParameterType({
   name: 'bodyParsingType',
-  regexp: /"(arrayBuffer|formData|blob|json|text)"/,
+  regexp: /arrayBuffer|formData|blob|json|text/,
   transformer: (p) => p,
   useForSnippets: false,
 });
