@@ -26,3 +26,10 @@ Feature: API
     And I parse "$response" body as json
     Then Response '$response' Status Code to be equal '201'
     And Response '$response' Status Message to be equal 'Created'
+
+  Scenario: Verify simple send with query and parse it as text
+    When I send 'GET' request to 'http://qavajsmock.org/text' and save response as 'response'
+    And I parse '$response' body as text
+    Then Response '$response' Status Code to be equal '200'
+    And Response '$response' Status Message to be equal 'OK'
+    Then I expect '$response.payload' memory value to be equal 'hello qavajs'
