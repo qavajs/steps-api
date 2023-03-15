@@ -6,5 +6,5 @@ export default class Memory {
     const file = await fs.readFile(path, 'utf-8');
     return JSON.parse(file);
   };
-  contentType = (type: string): {'Content-Type': string} => ({'Content-Type': type})
+  contentType = (type: string): { 'Content-Type': string } => ({ 'Content-Type': type });
 }
