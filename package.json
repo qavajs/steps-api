@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "@babel/core": "^7.18.6",
     "@cucumber/cucumber": "^9.0.0",
     "@qavajs/cli": "^0.0.19",
-    "@qavajs/console-formatter": "^0.1.2",
+    "@qavajs/console-formatter": "^0.2.0",
     "@qavajs/memory": "^1.2.0",
     "@qavajs/xunit-formatter": "^0.0.3",
     "@types/babel__core": "^7.1.19",

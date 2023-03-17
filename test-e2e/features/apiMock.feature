@@ -27,7 +27,7 @@ Feature: API
     Then Response '$response' Status Code to be equal '201'
     And Response '$response' Status Message to be equal 'Created'
 
-  Scenario: Verify simple send with query and parse it as text
+  Scenario: Verify simple send and parse it as text
     When I send 'GET' request to 'http://qavajsmock.org/text' and save response as 'response'
     And I parse '$response' body as text
     Then Response '$response' Status Code to be equal '200'
