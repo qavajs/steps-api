@@ -29,7 +29,7 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit): Pr
     set(value: any) {
       this._isPayloadSet = true;
       this._payload = value;
-    }
+    },
   });
-  return response
+  return response;
 }
