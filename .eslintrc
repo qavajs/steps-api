@@ -88,7 +88,9 @@
           "_request",
           "_method",
           "_options",
-          "_allure"
+          "_allure",
+          "_payload",
+          "_isPayloadSet"
         ]
       }
     ],

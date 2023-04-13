@@ -67,3 +67,11 @@ Feature: Construction API
     Then Response '$response' Status Code to be equal '200'
     And Response '$response' Status Message to be equal 'OK'
     Then I expect '$response.payload' memory value to be equal 'hello qavajs'
+
+  Scenario: Verify simple send and parse it as text
+    When I create 'GET' request 'request'
+    And I add 'http://qavajsmock.org/text' url to '$request'
+    And I send '$request' request and save response as 'response'
+    Then Response '$response' Status Code to be equal '200'
+    And Response '$response' Status Message to be equal 'OK'
+    Then I expect '$response.payload' memory value to be equal 'hello qavajs'
