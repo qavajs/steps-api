@@ -1,10 +1,7 @@
 import memory from '@qavajs/memory';
 import { DataTable, When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
-import httpRequest from '@qavajs/api-service';
-import { dataTable2Object } from './utils';
-
-const { sendHttpRequest } = httpRequest;
+import { dataTable2Object, sendHttpRequest } from './utils';
 
 /**
  * Create request template and save it to memory

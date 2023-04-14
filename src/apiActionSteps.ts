@@ -1,10 +1,8 @@
 import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
-// @ts-ignore
-import httpRequest from '@qavajs/api-service';
+import { sendHttpRequest } from './utils';
 
-const { sendHttpRequest } = httpRequest;
 /**
  * Send request to the API
  *
@@ -292,10 +290,11 @@ When(
 
 /**
  * MANDATORY STEP THAT SHOULD BE USED AFTER SENDING REQUEST
- * Parsing body in needed way
+ * Parsing body in needed way and set in payload property
  *
  * @example
  * I parse "$response" body as "json"
+ * I expect "$response.payload.foo" to equal "bar"
  *
  * @param response key of the remembered response
  * @param type response body parsing type (arrayBuffer|formData|blob|json|text)
