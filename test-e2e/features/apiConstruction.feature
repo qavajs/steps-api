@@ -67,3 +67,19 @@ Feature: Construction API
     Then Response '$response' Status Code to be equal '200'
     And Response '$response' Status Message to be equal 'OK'
     Then I expect '$response.payload' memory value to be equal 'hello qavajs'
+
+  Scenario: Verify form data body
+    When I create 'POST' request 'request'
+    And I add 'http://qavajsmock.org/echo' url to '$request'
+    And I add headers to '$request':
+      | Content-Type | multipart/form-data |
+    And I add form data body to '$request':
+      | key     | value | contentType |
+      | someKey | 42    | text/plain  |
+    And I send '$request' request and save response as 'response'
+    And I parse '$response' body as json
+    Then Response '$response' Status Code to be equal '200'
+    And Response '$response' Status Message to be equal 'OK'
+    Then I expect '$response.payload.requestBody' memory value to contain 'Content-Disposition: form-data; name="someKey"'
+    And I expect '$response.payload.requestBody' memory value to contain 'Content-Type: text/plain'
+    And I expect '$response.payload.requestBody' memory value to contain '42'

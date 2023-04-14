@@ -20,6 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/qavajs/steps-api.git"
   },
+  "keywords": [
+    "QA",
+    "Test Automation"
+  ],
   "authors": [
     "Alexandr Galichenko",
     "Kiryl Bahdanets",
@@ -67,8 +71,9 @@
   },
   "dependencies": {
     "@qavajs/api-service": "^0.0.8",
-    "@qavajs/validation": "^0.0.4",
+    "@qavajs/validation": "^0.0.5",
     "chai": "^4.3.7",
+    "form-data": "^4.0.0",
     "node-fetch": "^2.6.7"
   }
 }

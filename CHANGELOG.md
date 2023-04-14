@@ -1,6 +1,8 @@
 ## 0.0.14
-- added undefined payload handler 
-
+- added undefined payload handler
+- added _I add form data body_ step
+- added match schema validation
+  
 ## 0.0.13
 - added construction api steps
 

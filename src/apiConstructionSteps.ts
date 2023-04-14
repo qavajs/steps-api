@@ -1,6 +1,7 @@
 import memory from '@qavajs/memory';
 import { DataTable, When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
+import FormData from 'form-data';
 import { dataTable2Object, sendHttpRequest } from './utils';
 
 /**
@@ -57,6 +58,31 @@ When('I add {string} headers to {string}', async function (headersKey: string, r
 When('I add body to {string}:', async function (requestKey: string, body: string) {
   const request: RequestInit = await memory.getValue(requestKey);
   request.body = await memory.getValue(body);
+});
+
+/**
+ * Add form data body to request
+ * @param {string} requestKey - memory key of request
+ * @param {string} body - body
+ *
+ * @example
+ * When I add body to '$request':
+ *   | key      | value                    | filename | contentType      |
+ *   | formKey  | formValue                |          | application/json |
+ *   | otherKey | otherValue               |          | text/plain       |
+ *   | fileKey  | $file('./path/file.png') | file.png | image/png        |
+ */
+When('I add form data body to {string}:', async function (requestKey: string, dataTable: DataTable) {
+  const request: RequestInit = await memory.getValue(requestKey);
+  const formData = new FormData();
+  for (const record of dataTable.hashes()) {
+    const options: any = {
+      filename: await memory.getValue(record.filename),
+      contentType: await memory.getValue(record.contentType),
+    };
+    formData.append(await memory.getValue(record.key), await memory.getValue(record.value), { ...options });
+  }
+  request.body = formData;
 });
 
 /**
