@@ -5,6 +5,6 @@ export default {
   require: ['test-e2e/step-definitions/*.ts', 'src/*.ts'],
   format: ['@qavajs/xunit-formatter:test-e2e/report.xml', '@qavajs/console-formatter'],
   memory: new Memory(),
-  parallel: 1,
+  parallel: 5,
   publishQuiet: true,
 };

@@ -1,5 +1,5 @@
-# @qavajs/api-steps
-This is a @qavajs package to get basic API cucumber steps.
+# @qavajs/steps-api
+Step library to work with API
 
 ## Installation
 
@@ -9,7 +9,7 @@ This is a @qavajs package to get basic API cucumber steps.
 ```javascript
 module.exports = {
     default: {
-        require: ['node_modules/@qavajs/steps-api']
+        require: ['node_modules/@qavajs/steps-api/index.js']
     }
 }
 ```
