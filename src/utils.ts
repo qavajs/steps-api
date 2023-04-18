@@ -1,5 +1,5 @@
 import memory from '@qavajs/memory';
-import { DataTable } from '@cucumber/cucumber';
+import { DataTable, IWorld } from '@cucumber/cucumber';
 import { RequestInit, Response } from 'node-fetch';
 // @ts-ignore
 import httpRequest from '@qavajs/api-service';
@@ -19,7 +19,7 @@ export async function dataTable2Object(dataTable: DataTable): Promise<{ [key: st
   return obj;
 }
 
-export async function sendHttpRequest(requestUrl: string, conf: RequestInit): Promise<Response> {
+export async function sendHttpRequest(requestUrl: string, conf: RequestInit, context?: IWorld): Promise<Response> {
   const response = await originalSendHttpRequest(requestUrl, conf);
   Object.defineProperty(response, 'payload', {
     get(): any {
@@ -31,5 +31,9 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit): Pr
       this._payload = value;
     },
   });
+  if (context) {
+    context.log(`Request: ${requestUrl}\n${JSON.stringify(conf, null, 2)}`);
+    context.log(`Response:\n${JSON.stringify(response, null, 2)}`);
+  }
   return response;
 }
