@@ -1,3 +1,6 @@
+## 0.0.15
+- added request/response logging
+
 ## 0.0.14
 - added undefined payload handler
 - added _I add form data body_ step

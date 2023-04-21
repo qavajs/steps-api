@@ -121,6 +121,6 @@ When('I add {string} url to {string}', async function (urlKey: string, requestKe
  */
 When('I send {string} request and save response as {string}', async function (requestKey: string, responseKey: string) {
   const request: RequestInit & { url: string } = await memory.getValue(requestKey);
-  const response = await sendHttpRequest(request.url, request);
+  const response = await sendHttpRequest(request.url, request, this);
   memory.setValue(responseKey, response);
 });

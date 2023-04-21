@@ -18,7 +18,7 @@ When('I send {string} request to {string} and save response as {string}', async 
   const conf: RequestInit = {
     method,
   };
-  const response = await sendHttpRequest(requestUrl, conf);
+  const response = await sendHttpRequest(requestUrl, conf, this);
 
   // store response to memory to be able to use it in next steps
   memory.setValue(key, response);
@@ -45,7 +45,7 @@ When(
       method,
       headers: requestHeaders,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -71,7 +71,7 @@ When(
     const conf: RequestInit = {
       method,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
   },
@@ -98,7 +98,7 @@ When(
       method,
       headers: requestHeaders,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
   },
@@ -125,7 +125,7 @@ When(
       method,
       body: requestBody,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -155,7 +155,7 @@ When(
       body: requestBody,
       headers: requestHeaders,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -184,7 +184,7 @@ When(
       method,
       body: await requestBody,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -215,7 +215,7 @@ When(
       body: requestBody,
       headers: requestHeaders,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
 
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
@@ -248,7 +248,7 @@ When(
       method,
       body: requestBody,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
   },
@@ -282,7 +282,7 @@ When(
       body: requestBody,
       headers: requestHeaders,
     };
-    const response = await sendHttpRequest(requestUrl, conf);
+    const response = await sendHttpRequest(requestUrl, conf, this);
     // store response to memory to be able to use it in next steps
     memory.setValue(key, response);
   },
@@ -301,7 +301,7 @@ When(
  */
 When('I parse {string} body as {bodyParsingType}', async function (response: string, type: string) {
   const responseFromMemory: any = await memory.getValue(response);
-  const responseBodyPayload = { payload: await responseFromMemory[type]() };
-  const updatedResponse = Object.assign(responseFromMemory, responseBodyPayload);
-  memory.setValue(response.substring(1), updatedResponse);
+  const payload = await responseFromMemory[type]();
+  this.log(type === 'json' ? JSON.stringify(payload, null, 2) : payload);
+  responseFromMemory.payload = payload;
 });
