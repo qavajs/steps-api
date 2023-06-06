@@ -37,3 +37,14 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit, con
   }
   return response;
 }
+
+export async function formDataOptions({ filename, contentType }: { filename?: string, contentType?: string }): Promise<{
+  filename?: string,
+  contentType?: string
+} | undefined> {
+  if (!filename && !contentType) return;
+  const options: {filename?: string, contentType?: string} = {};
+  if (filename) options.filename = await memory.getValue(filename);
+  if (contentType) options.contentType = await memory.getValue(contentType);
+  return options
+}
