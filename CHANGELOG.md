@@ -1,5 +1,6 @@
-## 0.0.15
+## 0.15.0
 - added request/response logging
+- fixed issue with optional contentType and filename in form data step
 
 ## 0.0.14
 - added undefined payload handler
