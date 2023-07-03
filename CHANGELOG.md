@@ -1,3 +1,6 @@
+## 0.16.0
+- removed chai from dependencies
+
 ## 0.15.0
 - added request/response logging
 - fixed issue with optional contentType and filename in form data step

@@ -1,6 +1,6 @@
-import { jest, test, expect } from '@jest/globals';
+import { vi, test, expect } from 'vitest';
 
-jest.mock('@cucumber/cucumber', () => ({
+vi.mock('@cucumber/cucumber', () => ({
   Given: jest.fn(),
   When: jest.fn(),
   Then: jest.fn(),
