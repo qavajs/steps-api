@@ -1,5 +1,4 @@
 import { Then } from '@cucumber/cucumber';
-import { expect } from 'chai';
 import { getValidation } from '@qavajs/validation';
 import memory from '@qavajs/memory';
 
@@ -51,13 +50,14 @@ Then('Response {string} Status Message {apiValidation} {string}', async function
  */
 Then('Response {string} contains:', async function (response: any, dataTable: any) {
   const property = await memory.getValue(response);
+  const validation = getValidation('to have property');
   if (Array.isArray(property) && property.length > 0) {
     property.forEach((data) => {
       dataTable.rawTable
         .join()
         .split(',')
         .forEach((value: string) => {
-          expect(data).to.have.property(value);
+          validation(data, value);
         });
     });
   } else {
@@ -65,7 +65,7 @@ Then('Response {string} contains:', async function (response: any, dataTable: an
       .join()
       .split(',')
       .forEach((value: string) => {
-        expect(property).to.have.property(value);
+        validation(property, value)
       });
   }
 });
