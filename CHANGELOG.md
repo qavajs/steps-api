@@ -1,5 +1,6 @@
 ## 0.16.0
 - removed chai from dependencies
+- fixed issue with attaching non string responses
 
 ## 0.15.0
 - added request/response logging

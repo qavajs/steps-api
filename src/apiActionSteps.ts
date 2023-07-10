@@ -1,7 +1,7 @@
 import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
 import { RequestInit } from 'node-fetch';
-import { sendHttpRequest } from './utils';
+import { logPayload, sendHttpRequest } from './utils';
 
 /**
  * Send request to the API
@@ -302,6 +302,6 @@ When(
 When('I parse {string} body as {bodyParsingType}', async function (response: string, type: string) {
   const responseFromMemory: any = await memory.getValue(response);
   const payload = await responseFromMemory[type]();
-  this.log(type === 'json' ? JSON.stringify(payload, null, 2) : payload);
+  this.log(logPayload(type, payload));
   responseFromMemory.payload = payload;
 });

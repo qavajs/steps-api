@@ -12,10 +12,10 @@ Feature: Construction API
       | id        |
       | title     |
       | completed |
-    Then I expect '$response.payload.userId' memory value to be equal '$number(1)'
-    Then I expect '$response.payload.id' memory value to be equal '$number(1)'
+    Then I expect '$response.payload.userId' memory value to be equal '$js(1)'
+    Then I expect '$response.payload.id' memory value to be equal '$js(1)'
     Then I expect '$response.payload.title' memory value to be equal 'delectus aut autem'
-    Then I expect '$response.payload.completed' memory value to be equal '$boolean("false")'
+    Then I expect '$response.payload.completed' memory value to be equal '$js(false)'
 
   Scenario: Verify POST with valid request body as Cucumber Doc String
     Given I create 'POST' request 'request'
