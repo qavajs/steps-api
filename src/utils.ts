@@ -48,3 +48,11 @@ export async function formDataOptions({ filename, contentType }: { filename?: st
   if (contentType) options.contentType = await memory.getValue(contentType);
   return options
 }
+
+export function logPayload(type: string, payload: any): string {
+  switch (type) {
+    case 'text': return payload;
+    case 'json': return JSON.stringify(payload, null, 2);
+    default: return `[${type}]`;
+  }
+}

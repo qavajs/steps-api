@@ -33,3 +33,9 @@ Feature: API
     Then Response '$response' Status Code to be equal '200'
     And Response '$response' Status Message to be equal 'OK'
     Then I expect '$response.payload' memory value to be equal 'hello qavajs'
+
+  Scenario: Verify simple send and parse it as array buffer
+    When I send 'GET' request to 'http://qavajsmock.org/text' and save response as 'response'
+    And I parse '$response' body as arrayBuffer
+    Then Response '$response' Status Code to be equal '200'
+    And Response '$response' Status Message to be equal 'OK'
