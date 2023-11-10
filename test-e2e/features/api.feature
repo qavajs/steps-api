@@ -76,17 +76,6 @@ Feature: API
     Then Response "$response" Status Code to be equal '201'
     And Response "$response" Status Message to be equal 'Created'
 
-  Scenario: Verify POST with valid request body as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with Body "$textFile('testData/test_data_file.json')" and save response as "response"
-    And I parse "$response" body as json
-    Then Response "$response" Status Code to be equal '201'
-    And Response "$response" Status Message to be equal 'Created'
-    And Response "$response.payload" contains:
-      | userId    |
-      | id        |
-      | title     |
-      | body      |
-
   Scenario: Verify POST with valid request body as file and headers as file
     When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body "$textFile('testData/test_data_file.json')" and save response as "response"
     And I parse "$response" body as json

@@ -1,8 +1,6 @@
 import memory from '@qavajs/memory';
 import { DataTable, When } from '@cucumber/cucumber';
-import { RequestInit } from 'node-fetch';
-import FormData from 'form-data';
-import {dataTable2Object, formDataOptions, sendHttpRequest} from './utils';
+import { dataTable2Object, sendHttpRequest } from './utils';
 
 /**
  * Create request template and save it to memory
@@ -76,10 +74,11 @@ When('I add form data body to {string}:', async function (requestKey: string, da
   const request: RequestInit = await memory.getValue(requestKey);
   const formData = new FormData();
   for (const record of dataTable.hashes()) {
-    formData.append(await memory.getValue(record.key), await memory.getValue(record.value), await formDataOptions({
-      filename: record.filename,
-      contentType: record.contentType
-    }));
+    const key = await memory.getValue(record.key);
+    const value = await memory.getValue(record.value);
+    const fileName = await memory.getValue(record.filename) ?? 'default';
+    const type = await memory.getValue(record.contentType);
+    formData.append(key, new Blob([value], { type }), fileName);
   }
   request.body = formData;
 });
