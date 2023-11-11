@@ -1,4 +1,6 @@
 ## 0.17.0
+- added experimental support of websockets (API may change in future)
+
 Breaking Change
 - migrated to native fetch
 - dropped support of node16
