@@ -66,5 +66,8 @@
   "dependencies": {
     "@qavajs/validation": "^0.6.0",
     "ws": "^8.14.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
