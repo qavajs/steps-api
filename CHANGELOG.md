@@ -1,3 +1,10 @@
+## 0.17.0
+- added experimental support of websockets (API may change in future)
+
+Breaking Change
+- migrated to native fetch
+- dropped support of node16
+
 ## 0.16.0
 - removed chai from dependencies
 - fixed issue with attaching non string responses

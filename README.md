@@ -9,7 +9,9 @@ Step library to work with API
 ```javascript
 module.exports = {
     default: {
-        require: ['node_modules/@qavajs/steps-api/index.js']
+        require: [
+            'node_modules/@qavajs/steps-api/index.js'
+        ]
     }
 }
 ```

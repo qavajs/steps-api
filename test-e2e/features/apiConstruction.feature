@@ -38,6 +38,8 @@ Feature: Construction API
     Given I create 'POST' request 'request'
     And I add 'https://jsonplaceholder.typicode.com/posts' url to '$request'
     And I add '$textFile("testData/test_data_file.json")' body to '$request'
+    And I add headers to '$request':
+      | Content-Type | application/json |
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
     Then Response '$response' Status Code to be equal '201'
@@ -50,18 +52,18 @@ Feature: Construction API
 
   Scenario: Verify POST with headers
     Given I create 'POST' request 'request'
-    And I add 'http://qavajsmock.org/echo' url to '$request'
+    And I add 'http://localhost:3000/echo' url to '$request'
     And I add headers to '$request':
       | customHeader | 42 |
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
     Then Response '$response' Status Code to be equal '200'
     And Response '$response' Status Message to be equal 'OK'
-    Then I expect '$response.payload.requestHeaders.customheader' memory value to be equal '$array("42")'
+    Then I expect '$response.payload.requestHeaders.customheader' memory value to be equal '42'
 
   Scenario: Verify simple send and parse it as text
     When I create 'GET' request 'request'
-    And I add 'http://qavajsmock.org/text' url to '$request'
+    And I add 'http://localhost:3000/text' url to '$request'
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as text
     Then Response '$response' Status Code to be equal '200'
@@ -70,7 +72,7 @@ Feature: Construction API
 
   Scenario: Verify form data body
     When I create 'POST' request 'request'
-    And I add 'http://qavajsmock.org/echo' url to '$request'
+    And I add 'http://localhost:3000/echo' url to '$request'
     And I add headers to '$request':
       | Content-Type | multipart/form-data |
     And I add form data body to '$request':

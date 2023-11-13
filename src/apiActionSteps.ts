@@ -1,6 +1,5 @@
 import memory from '@qavajs/memory';
 import { When } from '@cucumber/cucumber';
-import { RequestInit } from 'node-fetch';
 import { logPayload, sendHttpRequest } from './utils';
 
 /**
@@ -9,7 +8,7 @@ import { logPayload, sendHttpRequest } from './utils';
  * @example
  * I send "GET" request to "$BASE_API_URL" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param key key of the remembered value
  */
@@ -31,7 +30,7 @@ When('I send {string} request to {string} and save response as {string}', async 
  * I send "GET" request to "$BASE_API_URL" with headers "$headers" and save response as "response"
  * I send "GET" request to "$BASE_API_URL" with headers "$json('headers.json')" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param headers optional headers parameter
  * @param key key of the remembered value
@@ -58,7 +57,7 @@ When(
  * @example
  * I send "GET" request to "https://www.some_service.com/some_endpoint" with qs "?category=HR&name=test" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param params any string qs or value that will be added to the request URI
  * @param headers optional headers parameter
@@ -83,7 +82,7 @@ When(
  * @example
  * I send "GET" request to "https://www.some_service.com/some_endpoint" with qs "?category=HR&name=test" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param params any string qs or value that will be added to the request URI
  * @param headers optional headers parameter
@@ -110,7 +109,7 @@ When(
  * @example
  * I send "POST" request to "$BASE_API_URL" with Body "$textFile('test_data_file.json')" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param requestBody should be json
  * @param headers optional headers parameter
@@ -138,7 +137,7 @@ When(
  * @example
  * I send "POST" request to "$BASE_API_URL" with headers "$json('headers.json')" with Body "$textFile('test_data_file.json')" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param requestBody should be json
  * @param headers optional headers parameter
@@ -168,7 +167,7 @@ When(
  * @example
  * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and Body "test_data_file.json" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH and etc.)
+ * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH, etc.)
  * @param url should be API endpoint
  * @param params any string query or value that will be added to the request URI
  * @param requestBody should be json
@@ -197,7 +196,7 @@ When(
  * @example
  * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and Body "test_data_file.json" and save response as "response"
  *
- * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH and etc.)
+ * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH, etc.)
  * @param url should be API endpoint
  * @param params any string query or value that will be added to the request URI
  * @param requestBody should be json
@@ -233,7 +232,7 @@ When(
  *     }
  *     """
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param requestBody should be json passed as a Cucumber Doc String
  * @param headers optional headers parameter
@@ -265,7 +264,7 @@ When(
  *     }
  *     """
  *
- * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
  * @param requestBody should be json passed as a Cucumber Doc String
  * @param headers optional headers parameter
