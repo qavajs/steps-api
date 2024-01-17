@@ -102,7 +102,7 @@ When('I add {string} body to {string}', async function (bodyKey: string, request
  * @param {string} url - url
  *
  * @example
- * When I add 'https://qavajs.github.io/' body to '$request'
+ * When I add 'https://qavajs.github.io/' url to '$request'
  */
 When('I add {string} url to {string}', async function (urlKey: string, requestKey: string) {
   const request: RequestInit & { url: string } = await memory.getValue(requestKey);
@@ -115,7 +115,7 @@ When('I add {string} url to {string}', async function (urlKey: string, requestKe
  * @param {string} responseKey - memory key to save response
  *
  * @example
- * When I send '$request' and save response as 'response'
+ * When I send '$request' request and save response as 'response'
  */
 When('I send {string} request and save response as {string}', async function (requestKey: string, responseKey: string) {
   const request: RequestInit & { url: string } = await memory.getValue(requestKey);
