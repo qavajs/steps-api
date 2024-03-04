@@ -88,7 +88,7 @@ When('I add body to {string}:', async function (requestKey: string, body: string
  **/
 When('I add {gqlRequestProperty} to GraphQL {string}:', async function (property: string, requestKey: string, valueString: string) {
   const request: any = await memory.getValue(requestKey);
-  request[property] = (await memory.getValue(valueString));
+  request[property] = await memory.getValue(valueString);
 });
 
 /**
