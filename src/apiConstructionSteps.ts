@@ -1,6 +1,7 @@
 import memory from '@qavajs/memory';
-import { DataTable, When } from '@cucumber/cucumber';
-import { dataTable2Object, sendHttpRequest } from './utils';
+import {DataTable, When} from '@cucumber/cucumber';
+import {dataTable2Object, sendHttpRequest} from './utils';
+import GraphQl from './GraphQl';
 
 /**
  * Create request template and save it to memory
@@ -14,6 +15,16 @@ When('I create {string} request {string}', function (method: string, key: string
 });
 
 /**
+ * Create GraphQL request template and save it to memory
+ * @example
+ * When I create GraphQL request 'request'
+ */
+When('I create GraphQL request {string}', function (key: string) {
+  const blankRequest = new GraphQl();
+  memory.setValue(key, blankRequest);
+});
+
+/**
  * Add data table of headers to request
  * @param {string} requestKey - memory key of request
  * @param {Array<[string, string]>} headersDataTable - key value headers
@@ -24,7 +35,7 @@ When('I create {string} request {string}', function (method: string, key: string
  */
 When('I add headers to {string}:', async function (requestKey: string, headersDataTable: DataTable) {
   const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = await dataTable2Object(headersDataTable);
+  request.headers = Object.assign(await dataTable2Object(headersDataTable), request.headers);
 });
 
 /**
@@ -37,7 +48,7 @@ When('I add headers to {string}:', async function (requestKey: string, headersDa
  */
 When('I add {string} headers to {string}', async function (headersKey: string, requestKey: string) {
   const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = await memory.getValue(headersKey);
+  request.headers = Object.assign(await memory.getValue(headersKey), request.headers);
 });
 
 /**
@@ -56,6 +67,28 @@ When('I add {string} headers to {string}', async function (headersKey: string, r
 When('I add body to {string}:', async function (requestKey: string, body: string) {
   const request: RequestInit = await memory.getValue(requestKey);
   request.body = await memory.getValue(body);
+});
+
+/**
+ * Add query or variables to GraphQL request.
+ * @param {string} property - one of GraphQl specific properties "query" or "variables"
+ * @param {string} requestKey - memory key of request
+ * @param {string} valueString - multiline string to be set as GraphQl body value.
+ *
+ * @example
+ * When I add query to GraphQL '$request':
+ * """
+ *    query {
+ *      characters(page: 2, filter: { name: "rick" }) {
+ *        results {
+ *          name
+ *           }
+ *         }
+ *      }
+ **/
+When('I add {gqlRequestProperty} to GraphQL {string}:', async function (property: string, requestKey: string, valueString: string) {
+  const request: any = await memory.getValue(requestKey);
+  request[property] = await memory.getValue(valueString);
 });
 
 /**

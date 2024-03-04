@@ -1,5 +1,19 @@
 Feature: Construction API
 
+  Scenario: GraphQL send
+    Given I create GraphQL request 'request'
+    And I add 'https://rickandmortyapi.com/graphql' url to '$request'
+    And I add query to GraphQL '$request':
+    """
+    query {  characters(page: 2, filter: { name: "rick" }) {
+      results { name }
+         }
+      }
+    """
+    And I send '$request' request and save response as 'response'
+    And I parse '$response' body as json
+    Then Response '$response' Status Code to be equal '200'
+
   Scenario: Verify simple send
     Given I create 'GET' request 'request'
     And I add 'https://jsonplaceholder.typicode.com/todos/1' url to '$request'

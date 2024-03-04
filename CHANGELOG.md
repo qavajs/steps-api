@@ -1,3 +1,8 @@
+## 0.18.0
+- added support of GraphQL along with specific steps:
+  - _I create GraphQL request {string}_
+  - _I add {gqlRequestProperty} to GraphQL {string}:_
+
 ## 0.17.0
 - added experimental support of websockets (API may change in future)
 
