@@ -24,3 +24,14 @@ defineParameterType({
   transformer: (p) => p,
   useForSnippets: false,
 });
+
+/**
+ * Used to initialize one of two possible GraphQl body properties
+ *
+ * @returns {string}
+ */
+defineParameterType({
+  name: 'gqlRequestProperty',
+  regexp: /query|variables/,
+  transformer: s => s
+});
