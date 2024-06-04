@@ -1,3 +1,6 @@
+## 0.18.1
+- fixed header assign order
+
 ## 0.18.0
 - added support of GraphQL along with specific steps:
   - _I create GraphQL request {string}_
