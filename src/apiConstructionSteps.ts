@@ -35,7 +35,7 @@ When('I create GraphQL request {string}', function (key: string) {
  */
 When('I add headers to {string}:', async function (requestKey: string, headersDataTable: DataTable) {
   const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = Object.assign(await dataTable2Object(headersDataTable), request.headers);
+  request.headers = Object.assign({}, request.headers, await dataTable2Object(headersDataTable));
 });
 
 /**
@@ -48,7 +48,7 @@ When('I add headers to {string}:', async function (requestKey: string, headersDa
  */
 When('I add {string} headers to {string}', async function (headersKey: string, requestKey: string) {
   const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = Object.assign(await memory.getValue(headersKey), request.headers);
+  request.headers = Object.assign({}, request.headers, await memory.getValue(headersKey));
 });
 
 /**
