@@ -1,3 +1,18 @@
+# Change Log
+
+All notable changes to the "@qavajs/steps-api" will be documented in this file.
+
+Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+
+:rocket: - new feature
+:beetle: - bugfix
+:x: - deprecation
+:pencil: - chore
+
+## [0.19.0]
+Breaking change: moved _@qavajs/validation_ to peer dependencies
+After update please install latest version of @qavajs/validation package
+
 ## 0.18.1
 - fixed header assign order
 
