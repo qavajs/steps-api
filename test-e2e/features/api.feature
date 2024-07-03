@@ -46,7 +46,7 @@ Feature: API
     And I parse "$response" body as json
     Then Response "$response" Status Code to be equal '404'
     And Response "$response" Status Message to be equal 'Not Found'
-  @debug
+
   Scenario: Verify POST with valid request body as Cucumber Doc String
     When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with Body:
       """
