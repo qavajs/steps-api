@@ -1,5 +1,5 @@
-import memory from "@qavajs/memory";
-import { DataTable, IWorld } from "@cucumber/cucumber";
+import memory from '@qavajs/memory';
+import { DataTable, IWorld } from '@cucumber/cucumber';
 
 /**
  * Transform key-value data table to JS object
@@ -18,7 +18,7 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit, con
   const request = new Request(requestUrl, conf);
   const requestClone = request.clone();
   const response = await fetch(request);
-  Object.defineProperty(response, "payload", {
+  Object.defineProperty(response, 'payload', {
     get(): any {
       if (this._isPayloadSet) return this._payload;
       throw new Error(`'payload' property is not set.\nCall 'I parse {string} body as {bodyParsingType}' step`);
@@ -35,7 +35,7 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit, con
     context.log(`Response:\n${JSON.stringify(responseData, null, 2)}`);
     context.attach(JSON.stringify(
       { request: requestData, response: responseData }
-    ), "text/x.response.json"); //attachment for qavajs reporter
+    ), 'text/x.response.json'); //attachment for qavajs reporter
   }
   return response;
 }
@@ -50,7 +50,7 @@ async function deserializeRequest(request: Request) {
     url: request.url,
     headers: headersObject,
     method: request.method,
-    body: Buffer.from(await request.arrayBuffer()).toString("base64")
+    body: Buffer.from(await request.arrayBuffer()).toString('base64')
   };
 }
 
@@ -64,15 +64,15 @@ async function deserializeResponse(response: Response) {
     status: responseClone.status,
     statusText: responseClone.statusText,
     headers: headersObject,
-    body: Buffer.from(await responseClone.arrayBuffer()).toString("base64")
+    body: Buffer.from(await responseClone.arrayBuffer()).toString('base64')
   };
 }
 
 export function logPayload(type: string, payload: any): string {
   switch (type) {
-    case "text":
+    case 'text':
       return payload;
-    case "json":
+    case 'json':
       return JSON.stringify(payload, null, 2);
     default:
       return `[${type}]`;
