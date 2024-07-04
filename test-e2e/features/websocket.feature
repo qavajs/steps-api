@@ -1,4 +1,3 @@
-@debug
 Feature: Websocket
 
   Background:
