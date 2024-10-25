@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
+## [2.0.0]
+- :rocket: migrated on @qavajs/core v2
+
 ## [0.20.0]
 - :rocket: improved request and response reporting
 
