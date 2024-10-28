@@ -9,6 +9,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
+## [1.0.0]
+- :pencil: bumped dependencies
+- :x: decommissioned step _Response {string} Status Code {apiValidation} {string}_
+- :x: decommissioned step _Response {string} Status Message {apiValidation} {string}_
+
 ## [0.20.0]
 - :rocket: improved request and response reporting
 
