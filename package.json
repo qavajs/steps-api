@@ -49,9 +49,6 @@
     "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   },
-  "optionalDependencies": {
-    "@swc/core-linux-x64-gnu": "^1.7.39"
-  },
   "dependencies": {
     "ws": "^8.17.1"
   },
