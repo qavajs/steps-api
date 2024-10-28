@@ -1,6 +1,6 @@
 import { DataTable, Then } from '@cucumber/cucumber';
 import { getValidation } from '@qavajs/validation';
-import { MemoryValue, Validation } from '@qavajs/core/src/load';
+import { MemoryValue, Validation } from '@qavajs/core';
 
 /**
  * Verifying that response contains all models
