@@ -1,6 +1,6 @@
 import { Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
-import { MemoryValue } from '@qavajs/core/src/load';
+import { MemoryValue } from '@qavajs/core';
 
 Then('I expect {value} memory value to be equal {value}', async function (actual: MemoryValue, expected: MemoryValue) {
   const actualValue = await actual.value();

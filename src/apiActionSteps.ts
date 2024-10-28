@@ -1,6 +1,6 @@
 import { When } from '@cucumber/cucumber';
 import { logPayload, sendHttpRequest } from './utils';
-import { MemoryValue } from '@qavajs/core/src/load';
+import { MemoryValue } from '@qavajs/core';
 
 /**
  * Send request to the API

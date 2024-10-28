@@ -1,7 +1,7 @@
 import { DataTable, When } from '@cucumber/cucumber';
 import { dataTable2Object, sendHttpRequest } from './utils';
 import GraphQl from './GraphQl';
-import { MemoryValue } from '@qavajs/core/src/load';
+import { MemoryValue } from '@qavajs/core';
 
 /**
  * Create request template and save it to memory

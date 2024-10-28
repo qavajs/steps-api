@@ -1,5 +1,4 @@
 import { DataTable, IWorld } from '@cucumber/cucumber';
-import { MemoryValue } from '@qavajs/core/src/load';
 import WebSocket from 'ws';
 
 /**
@@ -79,17 +78,6 @@ export function logPayload(type: string, payload: any): string {
   }
 }
 
-export async function sendMessage(
-  {
-    messageKey,
-    wsKey,
-  }: {
-    messageKey: MemoryValue;
-    wsKey: MemoryValue;
-  },
-  context: any,
-) {
-  const ws = (await context.getValue(wsKey)) as WebSocket;
-  const message = await context.getValue(messageKey);
+export function sendMessage(message: any, ws: WebSocket){
   ws.send(Buffer.from(message));
 }
