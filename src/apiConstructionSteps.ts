@@ -1,7 +1,7 @@
-import memory from '@qavajs/memory';
-import {DataTable, When} from '@cucumber/cucumber';
-import {dataTable2Object, sendHttpRequest} from './utils';
+import { DataTable, When } from '@cucumber/cucumber';
+import { dataTable2Object, sendHttpRequest } from './utils';
 import GraphQl from './GraphQl';
+import { MemoryValue } from '@qavajs/core';
 
 /**
  * Create request template and save it to memory
@@ -10,8 +10,8 @@ import GraphQl from './GraphQl';
  * @example
  * When I create 'GET' request 'request'
  */
-When('I create {string} request {string}', function (method: string, key: string) {
-  memory.setValue(key, { method });
+When('I create {string} request {value}', function (method: string, key: MemoryValue) {
+  key.set({ method });
 });
 
 /**
@@ -19,9 +19,8 @@ When('I create {string} request {string}', function (method: string, key: string
  * @example
  * When I create GraphQL request 'request'
  */
-When('I create GraphQL request {string}', function (key: string) {
-  const blankRequest = new GraphQl();
-  memory.setValue(key, blankRequest);
+When('I create GraphQL request {value}', function (key: MemoryValue) {
+  key.set(new GraphQl());
 });
 
 /**
@@ -33,9 +32,9 @@ When('I create GraphQL request {string}', function (key: string) {
  * When I add headers to '$request':
  *   | Content-Type | application/json |
  */
-When('I add headers to {string}:', async function (requestKey: string, headersDataTable: DataTable) {
-  const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = Object.assign({}, request.headers, await dataTable2Object(headersDataTable));
+When('I add headers to {value}:', async function (requestKey: MemoryValue, headersDataTable: DataTable) {
+  const request: RequestInit = await requestKey.value();
+  request.headers = Object.assign({}, request.headers, await dataTable2Object(headersDataTable, this));
 });
 
 /**
@@ -46,9 +45,9 @@ When('I add headers to {string}:', async function (requestKey: string, headersDa
  * @example
  * When I add '$headers' headers to '$request'
  */
-When('I add {string} headers to {string}', async function (headersKey: string, requestKey: string) {
-  const request: RequestInit = await memory.getValue(requestKey);
-  request.headers = Object.assign({}, request.headers, await memory.getValue(headersKey));
+When('I add {value} headers to {value}', async function (headersKey: MemoryValue, requestKey: MemoryValue) {
+  const request: RequestInit = await requestKey.value();
+  request.headers = Object.assign({}, request.headers, await headersKey.value());
 });
 
 /**
@@ -64,9 +63,9 @@ When('I add {string} headers to {string}', async function (headersKey: string, r
  *  }
  * """
  */
-When('I add body to {string}:', async function (requestKey: string, body: string) {
-  const request: RequestInit = await memory.getValue(requestKey);
-  request.body = await memory.getValue(body);
+When('I add body to {value}:', async function (requestKey: MemoryValue, body: string) {
+  const request: RequestInit = await requestKey.value();
+  request.body = await this.getValue(body);
 });
 
 /**
@@ -86,9 +85,9 @@ When('I add body to {string}:', async function (requestKey: string, body: string
  *         }
  *      }
  **/
-When('I add {gqlRequestProperty} to GraphQL {string}:', async function (property: string, requestKey: string, valueString: string) {
-  const request: any = await memory.getValue(requestKey);
-  request[property] = await memory.getValue(valueString);
+When('I add {gqlRequestProperty} to GraphQL {value}:', async function (property: keyof GraphQl, requestKey: MemoryValue, valueString: string) {
+  const request: GraphQl = await requestKey.value();
+  request[property] = await this.getValue(valueString);
 });
 
 /**
@@ -103,14 +102,14 @@ When('I add {gqlRequestProperty} to GraphQL {string}:', async function (property
  *   | otherKey | otherValue               |          | text/plain       |
  *   | fileKey  | $file('./path/file.png') | file.png | image/png        |
  */
-When('I add form data body to {string}:', async function (requestKey: string, dataTable: DataTable) {
-  const request: RequestInit = await memory.getValue(requestKey);
+When('I add form data body to {value}:', async function (requestKey: MemoryValue, dataTable: DataTable) {
+  const request: RequestInit = await requestKey.value();
   const formData = new FormData();
   for (const record of dataTable.hashes()) {
-    const key = await memory.getValue(record.key);
-    const value = await memory.getValue(record.value);
-    const fileName = await memory.getValue(record.filename) ?? 'default';
-    const type = await memory.getValue(record.contentType);
+    const key = await this.getValue(record.key);
+    const value = await this.getValue(record.value);
+    const fileName = (await this.getValue(record.filename)) ?? 'default';
+    const type = await this.getValue(record.contentType);
     formData.append(key, new Blob([value], { type }), fileName);
   }
   request.body = formData;
@@ -124,9 +123,9 @@ When('I add form data body to {string}:', async function (requestKey: string, da
  * @example
  * When I add '$body' body to '$request'
  */
-When('I add {string} body to {string}', async function (bodyKey: string, requestKey: string) {
-  const request: RequestInit = await memory.getValue(requestKey);
-  request.body = await memory.getValue(bodyKey);
+When('I add {value} body to {value}', async function (bodyKey: MemoryValue, requestKey: MemoryValue) {
+  const request: RequestInit = await requestKey.value();
+  request.body = await bodyKey.value();
 });
 
 /**
@@ -137,9 +136,9 @@ When('I add {string} body to {string}', async function (bodyKey: string, request
  * @example
  * When I add 'https://qavajs.github.io/' url to '$request'
  */
-When('I add {string} url to {string}', async function (urlKey: string, requestKey: string) {
-  const request: RequestInit & { url: string } = await memory.getValue(requestKey);
-  request.url = await memory.getValue(urlKey);
+When('I add {value} url to {value}', async function (urlKey: MemoryValue, requestKey: MemoryValue) {
+  const request: RequestInit & { url: string } = await requestKey.value();
+  request.url = await urlKey.value();
 });
 
 /**
@@ -150,8 +149,8 @@ When('I add {string} url to {string}', async function (urlKey: string, requestKe
  * @example
  * When I send '$request' request and save response as 'response'
  */
-When('I send {string} request and save response as {string}', async function (requestKey: string, responseKey: string) {
-  const request: RequestInit & { url: string } = await memory.getValue(requestKey);
+When('I send {value} request and save response as {value}', async function (requestKey: MemoryValue, responseKey: MemoryValue) {
+  const request: RequestInit & { url: string } = await requestKey.value();
   const response = await sendHttpRequest(request.url, request, this);
-  memory.setValue(responseKey, response);
+  responseKey.set(response);
 });

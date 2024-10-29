@@ -12,15 +12,15 @@ Feature: Construction API
     """
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '200'
+    Then Response "$response.status" to equal '200'
 
   Scenario: Verify simple send
     Given I create 'GET' request 'request'
     And I add 'https://jsonplaceholder.typicode.com/todos/1' url to '$request'
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '200'
-    And Response '$response' Status Message to be equal 'OK'
+    Then Response "$response.status" to equal '200'
+    And Response "$response.statusText" to equal 'OK'
     Then Response '$response.payload' contains:
       | userId    |
       | id        |
@@ -45,8 +45,8 @@ Feature: Construction API
     """
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '201'
-    And Response '$response' Status Message to be equal 'Created'
+    Then Response "$response.status" to equal '201'
+    And Response "$response.statusText" to equal 'Created'
 
   Scenario: Verify POST with valid request body as file
     Given I create 'POST' request 'request'
@@ -56,8 +56,8 @@ Feature: Construction API
       | Content-Type | application/json |
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '201'
-    And Response '$response' Status Message to be equal 'Created'
+    Then Response "$response.status" to equal '201'
+    And Response "$response.statusText" to equal 'Created'
     And Response '$response.payload' contains:
       | userId |
       | id     |
@@ -71,8 +71,8 @@ Feature: Construction API
       | customHeader | 42 |
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '200'
-    And Response '$response' Status Message to be equal 'OK'
+    Then Response "$response.status" to equal '200'
+    And Response "$response.statusText" to equal 'OK'
     Then I expect '$response.payload.requestHeaders.customheader' memory value to be equal '42'
 
   Scenario: Verify simple send and parse it as text
@@ -80,8 +80,8 @@ Feature: Construction API
     And I add 'http://localhost:3000/text' url to '$request'
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as text
-    Then Response '$response' Status Code to be equal '200'
-    And Response '$response' Status Message to be equal 'OK'
+    Then Response "$response.status" to equal '200'
+    And Response "$response.statusText" to equal 'OK'
     Then I expect '$response.payload' memory value to be equal 'hello qavajs'
 
   Scenario: Verify form data body
@@ -94,8 +94,8 @@ Feature: Construction API
       | someKey | 42    | text/plain  |
     And I send '$request' request and save response as 'response'
     And I parse '$response' body as json
-    Then Response '$response' Status Code to be equal '200'
-    And Response '$response' Status Message to be equal 'OK'
+    Then Response "$response.status" to equal '200'
+    And Response "$response.statusText" to equal 'OK'
     Then I expect '$response.payload.requestBody' memory value to contain 'Content-Disposition: form-data; name="someKey"'
     And I expect '$response.payload.requestBody' memory value to contain 'Content-Type: text/plain'
     And I expect '$response.payload.requestBody' memory value to contain '42'
