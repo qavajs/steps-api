@@ -3,40 +3,6 @@ import { getValidation } from '@qavajs/validation';
 import memory from '@qavajs/memory';
 
 /**
- * Comparing response status code with given
- *
- * @example
- * Response "$response" Status Code equals to "200"
- *
- * @param {String} statusCode should be valid status code
- */
-Then('Response {string} Status Code {apiValidation} {string}', async function (response: any, validationType: string, statusCode: string) {
-  const responseValue = await memory.getValue(response);
-  const validation = getValidation(validationType);
-  statusCode = await memory.getValue(statusCode);
-  this.log(`AR: ${responseValue.status}`);
-  this.log(`ER: ${statusCode}`);
-  validation(responseValue.status, parseInt(statusCode, 10));
-});
-
-/**
- * Comparing response status meesage with given
- *
- * @example
- * Response "$response" Status Message equals to "OK"
- *
- * @param {String} statusMessage should be valid status code
- */
-Then('Response {string} Status Message {apiValidation} {string}', async function (response: any, validationType: string, statusMessage: string) {
-  const responseValue = await memory.getValue(response);
-  const validation = getValidation(validationType);
-  statusMessage = await memory.getValue(statusMessage);
-  this.log(`AR: ${responseValue.statusText}`);
-  this.log(`ER: ${statusMessage}`);
-  validation(responseValue.statusText, statusMessage);
-});
-
-/**
  * Verifying that response contains all models
  *
  * @example
@@ -79,7 +45,7 @@ Then('Response {string} contains:', async function (response: any, dataTable: an
  * @param {String} pathQuery json path
  * @param {String} type should be named as expected value type
  */
-Then('Response {string} {apiValidation} {string}', async function (response: any, validationType: string, type: string) {
+Then('Response type {string} {apiValidation} {string}', async function (response: any, validationType: string, type: string) {
   const property = await memory.getValue(response);
   const validation = getValidation(validationType);
   type = await memory.getValue(type);
