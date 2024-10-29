@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "0.20.0",
+  "version": "1.0.0",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
