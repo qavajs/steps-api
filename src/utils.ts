@@ -28,7 +28,8 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit, con
       this._payload = value;
     }
   });
-  if (context) {
+  const showLogs = (context?.config?.api?.logPayload) ?? true
+  if (context && showLogs) {
     const requestData = await deserializeRequest(requestClone);
     const responseData = await deserializeResponse(response);
     context.log(`Request: ${requestData.url}\n${JSON.stringify(requestData, null, 2)}`);
