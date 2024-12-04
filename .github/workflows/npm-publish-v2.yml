@@ -1,15 +1,15 @@
 # This workflow publishes a package to GitHub Packages
-# whenever a release is published, and it's tag starts with "1"
-# The pipeline is aimed on "v1" branch
+# whenever a release is published, and it's tag starts with "2"
+# The pipeline is aimed on "v2" branch
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Node.js Package v1
+name: Node.js Package v2
 
 on:
   release:
     types: [published]
     tags:
-      - '1*'
+      - '2*'
 
 jobs:
   publish-npm:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 'v1'
+          ref: 'v2'
       - uses: actions/setup-node@v4
         with:
           node-version: 20
