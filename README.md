@@ -1,5 +1,5 @@
 # @qavajs/steps-api
-Step library to work with API
+qavajs steps to work with web API
 
 ## Installation
 
@@ -11,7 +11,10 @@ module.exports = {
     default: {
         require: [
             'node_modules/@qavajs/steps-api/index.js'
-        ]
+        ],
+        api: {
+          logPayload: false //display payload logs - default true
+        }
     }
 }
 ```

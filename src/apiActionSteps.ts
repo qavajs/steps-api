@@ -300,7 +300,5 @@ When(
  */
 When('I parse {string} body as {bodyParsingType}', async function (response: string, type: string) {
   const responseFromMemory: any = await memory.getValue(response);
-  const payload = await responseFromMemory[type]();
-  this.log(logPayload(type, payload));
-  responseFromMemory.payload = payload;
+  responseFromMemory.payload = await responseFromMemory[type]();
 });

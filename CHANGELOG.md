@@ -5,9 +5,15 @@ All notable changes to the "@qavajs/steps-api" will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 :rocket: - new feature
+
 :beetle: - bugfix
+
 :x: - deprecation
+
 :pencil: - chore
+
+## [1.1.0]
+- :rocket: added `logPayload` boolean flag to enable/disable extended payload logging
 
 ## [1.0.0]
 - :pencil: bumped dependencies
