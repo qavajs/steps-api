@@ -1,17 +1,17 @@
 # @qavajs/steps-api
-Step library to work with API
+Step library to work with REST, GraphQL and websocket API
 
 ## Installation
 
-`npm install @qavajs/steps-api`
+```bash
+npm install @qavajs/steps-api
+```
 
 ## Configuration
-```javascript
-module.exports = {
-    default: {
-        require: [
-            'node_modules/@qavajs/steps-api/index.js'
-        ]
-    }
+```typescript
+export default {
+    require: [
+        'node_modules/@qavajs/steps-api/index.js'
+    ]
 }
 ```

@@ -5,9 +5,9 @@ export default {
     paths: ['test-e2e/features/*.feature'],
     require: ['src/*.ts', 'test-e2e/step-definitions/*.ts'],
     format: [
-        'junit:test-e2e/report.xml',
+        ['junit', 'test-e2e/report.xml'],
         '@qavajs/console-formatter',
-        '@qavajs/html-formatter:test-e2e/report.html'
+        ['@qavajs/html-formatter', 'test-e2e/report.html']
     ],
     formatOptions: {
         console: {

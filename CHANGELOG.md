@@ -10,7 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :pencil: - chore  
 :microscope: - experimental
 
-## [unreleased]
+## [2.1.0]
+- :rocket: added source maps
 - :beetle: fixed publishing workflow
 
 ## [2.0.0]
