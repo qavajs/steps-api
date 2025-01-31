@@ -1,8 +1,7 @@
-//@ts-ignore
 import express, { Express, Request, Response } from 'express';
 import { createServer, Server } from 'http';
 import * as bodyParser from 'body-parser';
-import {WebSocketServer} from 'ws';
+import { WebSocketServer } from 'ws';
 
 const app: Express = express();
 const port = 3000;
