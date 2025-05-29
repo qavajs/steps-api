@@ -253,7 +253,7 @@ When(
  * Parsing body in needed way and set in payload property
  *
  * @example
- * I parse "$response" body as "json"
+ * I parse "$response" body as json
  * I expect "$response.payload.foo" to equal "bar"
  *
  * @param response key of the remembered response
@@ -265,3 +265,32 @@ When('I parse {value} body as {bodyParsingType}', async function (response: Memo
   this.log(logPayload(type, payload));
   responseFromMemory.payload = payload;
 });
+
+/**
+ * MANDATORY STEP THAT SHOULD BE USED AFTER SENDING REQUEST
+ * Parsing body by parser function
+ *
+ * @example
+ * I parse "$response" body as "$soap"
+ * I expect "$response.payload['soap:envelope']" to equal "bar"
+ *
+ * where $soap is function memory reference of parsing logic function
+ * @example
+ * import { XMLParser } from 'fast-xml-parser';
+ * const xml = new XMLParser();
+ * class Data {
+ *   soap = async (response) => {
+ *     const text = await response.text();
+ *     return xml.parse(text);
+ *   }
+ * }
+ *
+ * @param {string} response key of the remembered response
+ * @param {function} parser response body parsing type
+ */
+When('I parse {value} body as {value}', async function (response: MemoryValue, parser: MemoryValue) {
+  const responseFromMemory: any = await response.value();
+  const parserFn = await parser.value();
+  responseFromMemory.payload = await parserFn(responseFromMemory, this.log.bind(this));
+});
+

@@ -4,11 +4,33 @@ All notable changes to the "@qavajs/steps-api" will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-:rocket: - new feature  
-:beetle: - bugfix  
-:x: - deprecation/removal  
-:pencil: - chore  
+:rocket: - new feature
+
+:beetle: - bugfix
+
+:x: - deprecation/removal
+
+:pencil: - chore 
+
 :microscope: - experimental
+
+## [2.2.0]
+- :rocket: added `I parse {value} body as {value}` step allow providing custom response parser
+```gherkin
+When I parse "$response" body as "$soap"
+Then I expect "$response.payload['soap:envelope']" to equal "bar"
+```
+where `soap` is function in memory
+```typescript
+import { XMLParser } from 'fast-xml-parser';
+const xml = new XMLParser();
+class Data {
+  soap = async (response) => {
+    const text = await response.text();
+    return xml.parse(text);
+  }
+}
+```
 
 ## [2.1.0]
 - :rocket: added source maps

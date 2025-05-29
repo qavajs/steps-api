@@ -86,3 +86,8 @@ Feature: API
       | id     |
       | title  |
       | body   |
+
+  Scenario: Verify error status code 404 Status Code
+    When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" and save response as 'response'
+    And I parse "$response" body as '$js(response => response.json().then(obj => obj.userId))'
+    Then I expect "$response.payload" memory value to be equal '$js(1)'
