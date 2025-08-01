@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 :pencil: - chore
 
+## [1.2.0]
+- :rocket: added capability to print curl for debugging
+
 ## [1.1.0]
 - :rocket: added `logPayload` boolean flag to enable/disable extended payload logging
 
