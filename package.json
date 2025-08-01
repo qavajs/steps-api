@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
@@ -31,8 +31,8 @@
   },
   "homepage": "https://github.com/qavajs/steps-api#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^11.3.0",
-    "@qavajs/core": "^2.5.0",
+    "@cucumber/cucumber": "^12.1.0",
+    "@qavajs/core": "^2.5.2",
     "@qavajs/memory": "^1.10.2",
     "@qavajs/console-formatter": "^1.0.0",
     "@qavajs/html-formatter": "^0.18.1",
@@ -48,9 +48,6 @@
     "vitest": "^3.1.4"
   },
   "dependencies": {
-    "ws": "^8.18.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "ws": "^8.18.3"
   }
 }
