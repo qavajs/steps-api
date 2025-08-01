@@ -14,6 +14,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 :microscope: - experimental
 
+## [2.3.0]
+- :rocket: added capability to print curl for debugging
+
 ## [2.2.0]
 - :rocket: added `I parse {value} body as {value}` step allow providing custom response parser
 ```gherkin
