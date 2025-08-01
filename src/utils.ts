@@ -1,5 +1,13 @@
 import memory from '@qavajs/memory';
 import { DataTable, IWorld } from '@cucumber/cucumber';
+import WebSocket from 'ws';
+
+type RequestConfig = {
+    url: string;
+    headers: Record<string, string>;
+    method: string;
+    body: string;
+}
 
 /**
  * Transform key-value data table to JS object
@@ -26,22 +34,21 @@ export async function sendHttpRequest(requestUrl: string, conf: RequestInit, con
     set(value: any) {
       this._isPayloadSet = true;
       this._payload = value;
-    }
+    },
   });
   const showLogs = (context?.config?.api?.logPayload) ?? true
   if (context && showLogs) {
     const requestData = await deserializeRequest(requestClone);
     const responseData = await deserializeResponse(response);
+    context.log(fetchToCurl(requestData));
     context.log(`Request: ${requestData.url}\n${JSON.stringify(requestData, null, 2)}`);
     context.log(`Response:\n${JSON.stringify(responseData, null, 2)}`);
-    context.attach(JSON.stringify(
-      { request: requestData, response: responseData }
-    ), 'text/x.response.json'); //attachment for qavajs reporter
+    context.attach(JSON.stringify({ request: requestData, response: responseData }), 'text/x.response.json'); //attachment for qavajs reporter
   }
   return response;
 }
 
-async function deserializeRequest(request: Request) {
+async function deserializeRequest(request: Request): Promise<RequestConfig> {
   const headersObject: Record<string, string> = {};
   request.headers?.forEach((value, key) => {
     headersObject[key] = value;
@@ -51,7 +58,7 @@ async function deserializeRequest(request: Request) {
     url: request.url,
     headers: headersObject,
     method: request.method,
-    body: Buffer.from(await request.arrayBuffer()).toString('base64')
+    body: Buffer.from(await request.arrayBuffer()).toString('base64'),
   };
 }
 
@@ -65,7 +72,7 @@ async function deserializeResponse(response: Response) {
     status: responseClone.status,
     statusText: responseClone.statusText,
     headers: headersObject,
-    body: Buffer.from(await responseClone.arrayBuffer()).toString('base64')
+    body: Buffer.from(await responseClone.arrayBuffer()).toString('base64'),
   };
 }
 
@@ -78,4 +85,31 @@ export function logPayload(type: string, payload: any): string {
     default:
       return `[${type}]`;
   }
+}
+
+export function sendMessage(message: any, ws: WebSocket){
+  ws.send(Buffer.from(message));
+}
+
+export function fetchToCurl(config: RequestConfig): string {
+  const { url, method = 'GET', headers = {}, body } = config;
+  const curlParts: string[] = ['curl'];
+  curlParts.push(`-X ${method.toUpperCase()}`);
+
+  for (const [key, value] of Object.entries(headers)) {
+    curlParts.push(`-H ${quoteShell(`${key}: ${value}`)}`);
+  }
+
+  if (body !== undefined && body !== null) {
+    const bodyString = Buffer.from(body, 'base64').toString('utf-8');
+    curlParts.push(`--data ${quoteShell(bodyString)}`);
+  }
+
+  curlParts.push(quoteShell(url));
+  
+  return curlParts.join(' ');
+}
+
+function quoteShell(str: string): string {
+  return `'${str.replace(/'/g, `'\\''`)}'`;
 }

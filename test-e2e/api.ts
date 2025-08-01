@@ -5,7 +5,7 @@ export default {
     paths: ['test-e2e/features/*.feature'],
     require: ['src/*.ts', 'test-e2e/step-definitions/*.ts'],
     api: {
-      logPayload: false
+      logPayload: true
     },
     format: [
         'junit:test-e2e/report.xml',
