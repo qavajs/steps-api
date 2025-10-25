@@ -1,8 +1,6 @@
-import { When } from '@cucumber/cucumber';
 import WebSocket from 'ws';
-import { MemoryValue } from '@qavajs/core';
+import { type MemoryValue, When } from '@qavajs/core';
 import { sendMessage } from './utils';
-import memory from "@qavajs/memory";
 
 When('I connect to {value} ws endpoint {value}', async function (uriKey: MemoryValue, wsKey: MemoryValue) {
   const uri = await uriKey.value();
@@ -43,7 +41,7 @@ When('I send {value} message to {value} ws endpoint', async function (messageKey
 });
 
 When('I send message to {value} ws endpoint:', async function (wsKey: MemoryValue, messageKey: string) {
-  const message = await  memory.getValue(messageKey);
+  const message = await this.getValue(messageKey);
   const ws = await wsKey.value();
   sendMessage(message, ws);
 });

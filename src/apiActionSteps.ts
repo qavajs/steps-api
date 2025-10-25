@@ -1,6 +1,5 @@
-import { When } from '@cucumber/cucumber';
 import { logPayload, sendHttpRequest } from './utils';
-import { MemoryValue } from '@qavajs/core';
+import { type MemoryValue, When } from '@qavajs/core';
 
 /**
  * Send request to the API
@@ -88,10 +87,10 @@ When(
 );
 
 /**
- * Send request to the API with Body
+ * Send request to the API with body
  *
  * @example
- * I send "POST" request to "$BASE_API_URL" with Body "$textFile('test_data_file.json')" and save response as "response"
+ * I send "POST" request to "$BASE_API_URL" with body "$textFile('test_data_file.json')" and save response as "response"
  *
  * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
@@ -100,7 +99,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {value} with Body {value} and save response as {value}',
+  'I send {string} request to {value} with body {value} and save response as {value}',
   async function (method: string, url: MemoryValue, body: MemoryValue, key: MemoryValue) {
     const conf: RequestInit = {
       method,
@@ -112,10 +111,10 @@ When(
 );
 
 /**
- * Send request to the API with Body
+ * Send request to the API with body
  *
  * @example
- * I send "POST" request to "$BASE_API_URL" with headers "$json('headers.json')" with Body "$textFile('test_data_file.json')" and save response as "response"
+ * I send "POST" request to "$BASE_API_URL" with headers "$json('headers.json')" with body "$textFile('test_data_file.json')" and save response as "response"
  *
  * @param method should be named as one of the http methods (e.g. GET, POST, PUT, DELETE, etc.)
  * @param url should be API endpoint
@@ -124,7 +123,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {value} with headers {value} with Body {value} and save response as {value}',
+  'I send {string} request to {value} with headers {value} with body {value} and save response as {value}',
   async function (method: string, url: MemoryValue, headers: MemoryValue, body: MemoryValue, key: MemoryValue) {
     const conf: RequestInit = {
       method,
@@ -137,10 +136,10 @@ When(
 );
 
 /**
- * Send request to the API with Body and additional param in the request URI
+ * Send request to the API with body and additional param in the request URI
  *
  * @example
- * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and Body "test_data_file.json" and save response as "response"
+ * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and body "test_data_file.json" and save response as "response"
  *
  * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH, etc.)
  * @param url should be API endpoint
@@ -150,7 +149,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {string} with qs {string} and Body {string} and save response as {string}',
+  'I send {string} request to {string} with qs {string} and body {string} and save response as {string}',
   async function (method: string, url: MemoryValue, params: MemoryValue, body: MemoryValue, key: MemoryValue) {
     const requestUrl = (await url.value()) + (await params.value());
     const conf: RequestInit = {
@@ -163,10 +162,10 @@ When(
 );
 
 /**
- * Send request to the API with Body and additional param in the request URI
+ * Send request to the API with body and additional param in the request URI
  *
  * @example
- * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and Body "test_data_file.json" and save response as "response"
+ * I send "PUT" request to "https://www.some_service.com/some_endpoint/" with qs "?category=HR&name=test" and body "test_data_file.json" and save response as "response"
  *
  * @param method should be named as one of the http methods (e.g. POST, PUT, PATCH, etc.)
  * @param url should be API endpoint
@@ -176,7 +175,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request to {string} with headers {string} with qs {string} and Body {string} and save response as {string}',
+  'I send {string} request to {string} with headers {string} with qs {string} and body {string} and save response as {string}',
   async function (method: string, url: MemoryValue, headers: MemoryValue, params: MemoryValue, body: MemoryValue, key: MemoryValue) {
     const requestUrl = (await url.value()) + (await params.value());
     const conf: RequestInit = {
@@ -190,13 +189,13 @@ When(
 );
 
 /**
- * Send request to the API with Body passed as Cucumber Doc String
+ * Send request to the API with body passed as Cucumber Doc String
  *
  * @example
- * I send "POST" request and save response as "response" to "$BASE_API_URL" with Body:
+ * I send "POST" request and save response as "response" to "$BASE_API_URL" with body:
  *     """
  *     {
- *       "title": "Test Post Request with Body passed as string"
+ *       "title": "Test Post Request with body passed as string"
  *     }
  *     """
  *
@@ -207,7 +206,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request and save response as {value} to {value} with Body:',
+  'I send {string} request and save response as {value} to {value} with body:',
   async function (method: string, key: MemoryValue, url: MemoryValue, body: string) {
     const conf: RequestInit = {
       method,
@@ -219,13 +218,13 @@ When(
 );
 
 /**
- * Send request to the API with Body passed as Cucumber Doc String
+ * Send request to the API with body passed as Cucumber Doc String
  *
  * @example
- * I send "POST" request and save response as "response" to "$BASE_API_URL" with Body:
+ * I send "POST" request and save response as "response" to "$BASE_API_URL" with body:
  *     """
  *     {
- *       "title": "Test Post Request with Body passed as string"
+ *       "title": "Test Post Request with body passed as string"
  *     }
  *     """
  *
@@ -236,7 +235,7 @@ When(
  * @param key key of the remembered value
  */
 When(
-  'I send {string} request and save response as {value} to {value} with headers {value} with Body:',
+  'I send {string} request and save response as {value} to {value} with headers {value} with body:',
   async function (method: string, key: MemoryValue, url: MemoryValue, headers: MemoryValue, body: string) {
     const conf: RequestInit = {
       method,
@@ -292,5 +291,20 @@ When('I parse {value} body as {value}', async function (response: MemoryValue, p
   const responseFromMemory: any = await response.value();
   const parserFn = await parser.value();
   responseFromMemory.payload = await parserFn(responseFromMemory, this.log.bind(this));
+});
+
+/**
+ * Clone response
+ *
+ * @example
+ * I clone '$response' response as 'copiedResponse'
+ * I copy '$response' response as 'copiedResponse'
+ *
+ * @param response memory key of original response
+ * @param copiedResponse memory key of copied response
+ */
+When('I clone/copy {value} response as {value}', async function (response: MemoryValue, copiedResponse: MemoryValue) {
+  const originalResponse: Response = await response.value();
+  copiedResponse.set(originalResponse.clone());
 });
 

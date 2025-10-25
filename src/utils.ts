@@ -1,4 +1,4 @@
-import { DataTable, IWorld } from '@cucumber/cucumber';
+import { DataTable, IWorld } from '@qavajs/core';
 import WebSocket from 'ws';
 
 type RequestConfig = {

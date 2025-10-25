@@ -22,7 +22,7 @@ Feature: API
     Then I expect '$response.payload.requestHeaders.customheader' memory value to be equal '42'
 
   Scenario: Verify POST with valid request body as Cucumber Doc String and headers as file
-    When I send 'POST' request to 'https://jsonplaceholder.typicode.com/posts' with headers '$contentType("application/x-www-form-urlencoded; charset=UTF-8")' with Body 'qwerty' and save response as 'response'
+    When I send 'POST' request to 'https://jsonplaceholder.typicode.com/posts' with headers '$contentType("application/x-www-form-urlencoded; charset=UTF-8")' with body 'qwerty' and save response as 'response'
     And I parse "$response" body as json
     Then Response "$response.status" to equal '201'
     And Response "$response.statusText" to equal 'Created'

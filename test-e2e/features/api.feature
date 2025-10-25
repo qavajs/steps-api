@@ -49,7 +49,7 @@ Feature: API
     And Response "$response.statusText" to equal 'Not Found'
 
   Scenario: Verify POST with valid request body as Cucumber Doc String
-    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with Body:
+    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with body:
       """
       {
         "userId": 1,
@@ -63,7 +63,7 @@ Feature: API
     And Response "$response.statusText" to equal 'Created'
 
   Scenario: Verify POST with valid request body as Cucumber Doc String and headers as file
-    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body:
+    When I send "POST" request and save response as "response" to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with body:
       """
       {
         "userId": 1,
@@ -77,7 +77,7 @@ Feature: API
     And Response "$response.statusText" to equal 'Created'
 
   Scenario: Verify POST with valid request body as file and headers as file
-    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with Body "$textFile('testData/test_data_file.json')" and save response as "response"
+    When I send "POST" request to "https://jsonplaceholder.typicode.com/posts" with headers "$json('testData/headers.json')" with body "$textFile('testData/test_data_file.json')" and save response as "response"
     And I parse "$response" body as json
     Then Response "$response.status" to equal '201'
     And Response "$response.statusText" to equal 'Created'
@@ -91,3 +91,9 @@ Feature: API
     When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" and save response as 'response'
     And I parse "$response" body as '$js(response => response.json().then(obj => obj.userId))'
     Then I expect "$response.payload" memory value to be equal '$js(1)'
+
+  Scenario: Verify copy response
+    When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" and save response as 'response'
+    And I copy '$response' response as 'copiedResponse'
+    And I parse '$response' body as json
+    And I parse '$copiedResponse' body as text
