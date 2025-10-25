@@ -1,4 +1,4 @@
-import { defineParameterType } from '@cucumber/cucumber';
+import { defineParameterType } from '@qavajs/core';
 
 /**
  * Used for parsing responses body

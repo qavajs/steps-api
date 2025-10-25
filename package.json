@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
@@ -16,8 +16,29 @@
     "url": "git+https://github.com/qavajs/steps-api.git"
   },
   "keywords": [
-    "QA",
-    "Test Automation"
+    "test",
+    "automation",
+    "testing",
+    "qa",
+    "quality-assurance",
+    "test-framework",
+    "test-runner",
+    "test-automation",
+    "e2e",
+    "end-to-end",
+    "ui-testing",
+    "api-testing",
+    "integration-testing",
+    "acceptance-testing",
+    "functional-testing",
+    "browser-testing",
+    "mobile-testing",
+    "cross-browser",
+    "bdd",
+    "gherkin",
+    "assertions",
+    "continuous-delivery",
+    "automation-framework"
   ],
   "authors": [
     "Alexandr Galichenko",
@@ -36,15 +57,15 @@
     "@qavajs/memory": "^1.10.3",
     "@qavajs/console-formatter": "^1.1.1",
     "@qavajs/html-formatter": "^1.0.0",
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.8.1",
+    "@types/express": "^5.0.4",
+    "@types/node": "^24.9.1",
     "@types/ws": "^8.18.1",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.3"
   },
   "dependencies": {
     "ws": "^8.18.3"

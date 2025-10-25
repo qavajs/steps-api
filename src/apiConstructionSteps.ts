@@ -1,11 +1,10 @@
-import { DataTable, When } from '@cucumber/cucumber';
 import { dataTable2Object, sendHttpRequest } from './utils';
 import GraphQl from './GraphQl';
-import { MemoryValue } from '@qavajs/core';
+import { type MemoryValue, DataTable, When } from '@qavajs/core';
 
 /**
  * Create request template and save it to memory
- * @param {string} method - should be named as one of the http methods (e.g. GET, POST, PUT, DELETE and etc.)
+ * @param {string} method - should be named as one of the http methods (e.g. GET, POST, PUT, DELETE etc.)
  *
  * @example
  * When I create 'GET' request 'request'
