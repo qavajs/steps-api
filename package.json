@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/steps-api",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "api steps for @qavajs project",
   "main": "./index.js",
   "scripts": {
@@ -52,22 +52,25 @@
   },
   "homepage": "https://github.com/qavajs/steps-api#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^12.2.0",
-    "@qavajs/core": "^2.10.0",
-    "@qavajs/memory": "^1.10.3",
+    "@cucumber/cucumber": "^12.5.0",
     "@qavajs/console-formatter": "^1.1.1",
+    "@qavajs/core": "^2.12.0",
     "@qavajs/html-formatter": "^1.0.0",
-    "@types/express": "^5.0.4",
-    "@types/node": "^24.9.1",
+    "@qavajs/memory": "^1.10.3",
+    "@qavajs/steps-memory": "^2.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.3",
     "@types/ws": "^8.18.1",
-    "body-parser": "^2.2.0",
-    "express": "^5.1.0",
-    "prettier": "^3.6.2",
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1",
+    "prettier": "^3.7.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.3"
+    "vitest": "^4.0.16"
   },
   "dependencies": {
-    "ws": "^8.18.3"
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
+    "ws": "^8.19.0"
   }
 }

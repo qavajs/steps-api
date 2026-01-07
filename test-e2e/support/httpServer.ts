@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import { createServer, Server } from 'http';
+import { createServer, Server } from 'node:http';
 import * as bodyParser from 'body-parser';
 import { WebSocketServer } from 'ws';
 
@@ -33,6 +33,7 @@ function createWSServer(server: Server) {
         setTimeout(() => ws.send('qavajs test'), 1000);
     });
 }
+
 class Service {
     httpServer: any;
     before() {

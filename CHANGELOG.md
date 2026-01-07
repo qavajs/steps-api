@@ -14,8 +14,31 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 :microscope: - experimental
 
+## [2.5.0]
+- :microscope: added gRPC steps
+```gherkin
+    When I load proto file 'test-e2e/support/greeter.proto' as 'proto'
+    And I connect '$proto.greeter.Greeter' service to 'localhost:50051' gRPC endpoint as 'greeter'
+    And I save '$grpcCall($greeter, "SayHello", { name: "qavajs" })' to memory as 'response'
+    Then I expect '$response.message' memory value to be equal 'Hello, qavajs!'
+```
+
+where `$grpcCall` is util function in memory
+```typescript
+  grpcCall = (client: any, fn: string, ...args: any[]) => {
+  return new Promise((resolve, reject) => {
+    client[fn](...args, (err: any, response: any) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(response);
+    });
+  })
+}
+```
+
 ## [2.4.0]
-- added step to copy response
+- :rocket: added step to copy response
 ```Gherkin
 When I send 'GET' request to "https://jsonplaceholder.typicode.com/todos/1" and save response as 'response'
 And I copy '$response' response as 'copiedResponse'
