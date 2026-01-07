@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 :pencil: - chore
 
+## [1.3.0]
+- :microscope: added gRPC steps
+
 ## [1.2.0]
 - :rocket: added capability to print curl for debugging
 
