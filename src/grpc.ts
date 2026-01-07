@@ -1,16 +1,16 @@
-import * as grpc from '@grpc/grpc-js';
-import { loadSync } from '@grpc/proto-loader';
+import { loadPackageDefinition, credentials } from '@grpc/grpc-js';
+import { load } from '@grpc/proto-loader';
 import { MemoryValue, When } from '@qavajs/core';
 
 When('I load proto file {value} as {value}', async (protoPathKey: MemoryValue, clientKey: MemoryValue) => {
-  const packageDefinition = loadSync(await protoPathKey.value(), {
+  const packageDefinition = await load(await protoPathKey.value(), {
     keepCase: true,
     longs: String,
     enums: String,
     defaults: true,
     oneofs: true
   });
-  const serviceProto = grpc.loadPackageDefinition(packageDefinition) as any;
+  const serviceProto = loadPackageDefinition(packageDefinition);
   clientKey.set(serviceProto);
 });
 
@@ -21,7 +21,7 @@ When('I connect {value} service to {value} gRPC endpoint as {value}', async (pro
   }
   const client = new service(
     await urlKey.value(),
-    grpc.credentials.createInsecure()
+    credentials.createInsecure()
   );
   clientKey.set(client);
 });
