@@ -8,10 +8,10 @@
     "node_modules"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "es2023",
-    "module": "node16",
+    "module": "node20",
     "moduleResolution": "node16",
+    "rootDir": "./src",
     "outDir": "./lib",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -23,7 +23,6 @@
     "pretty": true,
     "allowJs": true,
     "checkJs": true,
-    "downlevelIteration": true,
     "lib": [
       "dom",
       "es2015",
